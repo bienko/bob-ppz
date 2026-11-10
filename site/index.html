@@ -1,0 +1,1325 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="IBM Bob Premium Package for Z Level 3">
+      
+      
+        <meta name="author" content="Christopher Bienko (cdbienko@us.ibm.com)">
+      
+      
+      
+        <link rel="prev" href="toc/">
+      
+      
+        <link rel="next" href="setup-ibmers/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>IBM Bob Premium Package for Z Level 3</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="css/print-site.css">
+    
+      <link rel="stylesheet" href="css/print-site-material.css">
+    
+      <link rel="stylesheet" href="styles/override-print.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="IBM Bob Premium Package for Z Level 3" class="md-header__button md-logo" aria-label="IBM Bob Premium Package for Z Level 3" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IBM Bob Premium Package for Z Level 3
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="IBM Bob Premium Package for Z Level 3" class="md-nav__button md-logo" aria-label="IBM Bob Premium Package for Z Level 3" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    IBM Bob Premium Package for Z Level 3
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="toc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Table of Contents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#i-modernization-is-indispensable-to-the-enterprise-it-agenda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        i. Modernization is indispensable to the enterprise IT agenda
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-what-is-ibm-bob" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ii. What is IBM Bob?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-what-the-premium-package-for-z-adds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iii. What the Premium Package for Z adds
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-how-a-prompt-becomes-a-governed-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iv. How a prompt becomes a governed workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-the-environment-two-cics-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v. The environment: two CICS applications
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vi-lab-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vi. Lab objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vii-lab-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vii. Lab prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viii-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        viii. Next steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registration and setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Registration and setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="setup-ibmers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For IBM regular employees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="setup-partners/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For IBM business partners
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Analyze
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Analyze
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="analyze/1-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding the CICS banking sample application
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Build
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Build
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="build/2-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing a new feature in COBOL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Refactor
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Refactor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="refactor/3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monolithic COBOL refactoring and service integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#i-modernization-is-indispensable-to-the-enterprise-it-agenda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        i. Modernization is indispensable to the enterprise IT agenda
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-what-is-ibm-bob" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ii. What is IBM Bob?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-what-the-premium-package-for-z-adds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iii. What the Premium Package for Z adds
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-how-a-prompt-becomes-a-governed-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iv. How a prompt becomes a governed workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-the-environment-two-cics-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v. The environment: two CICS applications
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vi-lab-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vi. Lab objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vii-lab-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vii. Lab prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viii-next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        viii. Next steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<div><p><strong>IBM BOB PREMIUM PACKAGE FOR Z</strong></p>
+<h1 id="introduction"><strong>INTRODUCTION</strong></h1>
+<hr>
+<h2 id="i-modernization-is-indispensable-to-the-enterprise-it-agenda"><strong>i. Modernization is indispensable to the enterprise IT agenda</strong></h2>
+<p></p><div class="video-container"><video style="position:relative;width:100%;height:22.172vw" controls="" alt="type:video"><source src="_videos/Introduction%20%5BBob%20PPZ%20L3%5D.mp4" type="video/mp4"></video></div><p></p>
+<div class="admonition note">
+<p>Christopher Bienko <em>(AI Enablement GTM Product Manager)</em> introduces the <em>IBM Bob Premium Package for Z</em> curriculum for hands-on enablement. <strong><a href="https://ibm.seismic.com/Link/Content/DCfj8Bq7m3RpfGQThPRHq2mgmW3G" target="_blank">[5 min]</a></strong></p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">RECOMMENDED: <em>CLIMBING THE AI MATURITY CURVE</em> (LEVEL 3)</p>
+<p>This course assumes you have completed the <a href="https://ibm.github.io/bob-l3/" target="_blank"><strong>Climbing the AI Maturity Curve with IBM Bob</strong></a> Level 3 curriculum and that its concepts are familiar ground: the Agentic Sidebar and its modes, Bob Rules and custom configuration, and the context window and its economics. The discipline that carried through every stage of that course applies here as well — Bob does the building, while the developer stays in control. The material ahead builds directly upon those foundations and will reference them throughout.</p>
+</div>
+<p>IBM sellers and business partners know first-hand from client engagements that the most expensive mistakes in modernization planning are the ones that are never scoped or accounted for in the planning steps. Certain elements are easy to ignore, but carry great costs if overlooked:</p>
+<ul>
+<li>Hidden assumptions baked into the legacy code</li>
+<li>The need to run old and new systems side-by-side during transition</li>
+<li>The true shape of the dependency tree</li>
+<li>Data conversion and organizational readiness</li>
+<li>The external interfaces that must keep working throughout</li>
+</ul>
+<p>A useful discipline for sizing this work considers six dimensions of AI-assisted modernization estimation:</p>
+<ol>
+<li><strong>Structural scope</strong> — what is physically in-scope?</li>
+<li><strong>Semantic complexity</strong> — what behavior has to survive the change?</li>
+<li><strong>Knowledge transparency</strong> — can the system explain itself? Searchable internal knowledge changes the economics of modernization, well beyond developer convenience.</li>
+<li><strong>Integration and data surface</strong> — which boundaries must keep working? Modernization often fails at the edges: REST APIs, SOAP services, message queues and the like.</li>
+<li><strong>Feedback readiness</strong> — how quickly do you learn that something has broken?</li>
+<li><strong>Operational and governance constraints</strong> — what rules shape the work before it even begins?</li>
+</ol>
+<p>Taken together, these dimensions resolve to a readiness test worth carrying into any client conversation. A codebase is well suited to AI-assisted assessment when intent is visible and boundaries are documented, when feedback is fast, and when changes can be sliced safely enough to verify. A codebase is poorly suited when the opposite holds true:</p>
+<ul>
+<li>Internal frameworks lack documentation and real payloads have no examples</li>
+<li>Contract tests and test data are missing</li>
+<li>The local build is unreliable</li>
+<li>Shared libraries have no clear owner</li>
+<li>There is no safe slice to run</li>
+</ul>
+<p>As you will see in <strong><a href="analyze/1-1/" target="_blank">Module 1 | Understanding the CICS Banking Sample Application</a></strong>, building a rigorous understanding of the legacy application is what moves an estate from ill-suited toward modernization-ready.</p>
+<div class="admonition note">
+<p class="admonition-title">COBOL IN THE PRESENT DAY</p>
+<p>Many organizations today continue to rely on business-critical applications that were written decades ago. These systems power core business processes and have earned their longevity through decades of dependable service. One of the most common programming languages found within these environments is <strong>COBOL</strong> (Common Business-Oriented Language).</p>
+<p>First introduced in 1959, COBOL was purpose-built for business data processing, and it remains one of the most widely deployed enterprise programming languages in the world. For more than sixty years, organizations have used COBOL to build systems that process vast volumes of financial and transactional data with exceptional reliability. Today, a significant portion of the world's business transactions continue to pass through COBOL applications running on IBM mainframes. Typical COBOL workloads include:</p>
+<ul>
+<li>Banking and payment processing</li>
+<li>Insurance policy administration</li>
+<li>Government records systems</li>
+<li>Airline reservation systems</li>
+<li>Payroll processing</li>
+<li>Retail and inventory management</li>
+<li>Financial accounting applications</li>
+</ul>
+</div>
+<p>Despite their reliability, many present-day COBOL applications now face mounting modernization pressures: aging codebases that have evolved over decades; limited (or altogether absent) documentation; a shrinking pool of COBOL expertise in the labor market; difficulty integrating with modern systems; and growing demand for cloud-native architectures and modern user experiences. As a result, organizations increasingly seek ways to transform these applications while preserving the business logic that has been trusted for years — and that is the challenge IBM Bob was designed to address.</p>
+<p>Those pressures take a recognizable shape on IBM Z. Mainframe applications are complex and mission-critical, and they often involve millions of lines of code, which calls for platform awareness and a deep understanding of IBM Z technologies. Four challenges recur in client conversations:</p>
+<table>
+<thead>
+<tr>
+<th>CHALLENGE</th>
+<th>REAL WORLD EXAMPLE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Costs and complexity</strong></td>
+<td>Millions of lines of code across thousands of programs. The result is a set of deeply interconnected programs that are expensive to maintain and evolve</td>
+</tr>
+<tr>
+<td><strong>Scalability and agility</strong></td>
+<td>Lengthy release cycles, heavy governance and low developer productivity slow innovation and extend time to value</td>
+</tr>
+<tr>
+<td><strong>Skills</strong></td>
+<td>A reduced talent pool and a reliance on scarce domain experts leave teams without application understanding</td>
+</tr>
+<tr>
+<td><strong>Risk and reliability</strong></td>
+<td>Modernization carries high operational risk. An unintended change can affect mission-critical workloads, compliance and business continuity</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">THE MARKET IS ALREADY MOVING</p>
+<p>Gartner expects 90% of enterprise software engineers to use AI code assistants by 2028, up from less than 14% in early 2024.<sup>1</sup> Kyndryl's 2025 survey of mainframe organizations found that 88% have implemented or plan to implement generative AI tools as part of their mainframe modernization efforts.<sup>2</sup> For most mainframe clients, the principal challenge is accelerating application modernization in support of broader business transformation.</p>
+<p><sup>1</sup> <a href="https://www.gartner.com/en/newsroom/press-releases/2025-07-01-gartner-identifies-the-top-strategic-trends-in-software-engineering-for-2025-and-beyond" target="_blank">Gartner, <em>Top Strategic Trends in Software Engineering for 2025 and Beyond</em>, July 2025</a>
+<sup>2</sup> <a href="https://www.kyndryl.com/us/en/campaign/state-of-mainframe-modernization" target="_blank">Kyndryl, <em>2025 State of Mainframe Modernization Survey</em>, September 2025</a></p>
+</div>
+<hr>
+<h2 id="ii-what-is-ibm-bob"><strong>ii. What is IBM Bob?</strong></h2>
+<p><strong><em>IBM Bob</em> is an AI-powered modernization and software engineering partner that supports the entire software development lifecycle.</strong> Where a traditional code-completion tool is anchored to the moment of writing code, Bob is designed to support the lifecycle around it. Bob plans, executes, validates and governs multi-step tasks on a developer's behalf, which lets teams:</p>
+<ul>
+<li>Understand existing applications and analyze their business logic</li>
+<li>Generate technical documentation and architectural artifacts</li>
+<li>Modernize legacy systems and build new features</li>
+<li>Create automated tests and accelerate development workflows in general</li>
+</ul>
+<p>Enterprises are entering a phase of AI-driven development in which tools do more than suggest or autocomplete code: they operate and coordinate across systems. Four requirements follow from that shift and each is built into how clients work with IBM Bob:</p>
+<div class="admonition note">
+<ul>
+<li><strong>Support across the SDLC</strong>, from planning through development. The value appears when AI operates inside the existing delivery pipeline</li>
+<li><strong>Understanding of entire applications.</strong> Safe orchestration requires application-wide context, which file-level reasoning cannot provide</li>
+<li><strong>Governance, security and human oversight by design</strong>, so that policy and accountability are enforced as the work happens</li>
+<li><strong>Execution of multi-step workflows.</strong> Outcomes require orchestration, iteration and validation, and a single prompt rarely supplies all three</li>
+</ul>
+</div>
+<p>Bob operates directly within the development environment, allowing developers to work alongside AI while maintaining complete visibility into every stage of the process. Throughout this lab, Bob will help you understand, extend and refactor two CICS COBOL applications in place. You (the developer) remain in the decision seat for every consequential step along the way.</p>
+<hr>
+<h2 id="iii-what-the-premium-package-for-z-adds"><strong>iii. What the Premium Package for Z adds</strong></h2>
+<p></p><div class="video-container"><video style="position:relative;width:100%;height:22.172vw" controls="" alt="type:video"><source src="_videos/Recording%20of%20Client%20Presentation%20-%20IBM%20Bob%20Premium%20Package%20for%20Z%20%5BBob%20PPZ%20L2%5D.mp4" type="video/mp4"></video></div><p></p>
+<div class="admonition note">
+<p>Christopher Bienko <em>(AI Enablement GTM Product Manager)</em> delivers a client-facing overview of <em>IBM Bob Premium Package for Z</em>. <strong><a href="https://ibm.seismic.com/Link/Content/DC39HX2DmbQG6GWDPCXc3gDgfBTB" target="_blank">[15 min]</a></strong></p>
+</div>
+<p><strong><em>IBM Bob Premium Package for Z (<code>PPZ</code>)</em> adds deep mainframe expertise to Bob, so that large and complex IBM Z applications can be modernized accurately and efficiently.</strong> It is an extension for the Bob IDE and Bob Shell that uses structured workflows, automation and AI-driven insights to examine, restructure and document legacy mainframe code. It supports COBOL, PL/I, JCL, REXX and HLASM, along with the CICS, IMS, MQ and Db2 middleware those programs depend on. In this lab you will work in COBOL and CICS throughout.</p>
+<p>What sets <em>IBM Bob Premium Package for Z</em> apart from other coding assistants in the marketplace today are four key value pillars:</p>
+<table>
+<thead>
+<tr>
+<th>PILLAR</th>
+<th>VALUE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Modernization accelerator</strong></td>
+<td>Mainframe expertise and application metadata are embedded in the workflows themselves, which scales end-to-end modernization, accelerates onboarding and reduces reliance on scarce expertise.</td>
+</tr>
+<tr>
+<td><strong>Streamlined experience</strong></td>
+<td>Code analytics are unified with multi-model intelligence to enable <em>literate coding</em>: developers express intent directly in code and receive context-aware changes in place.</td>
+</tr>
+<tr>
+<td><strong>Enterprise-wide awareness</strong></td>
+<td>Centralized mainframe code metadata can be shared across the enterprise, so the model reasons beyond file-level scope and gains consistency and accuracy.</td>
+</tr>
+<tr>
+<td><strong>Secure, governed AI</strong></td>
+<td>IBM Z domain expertise embeds platform-aware security controls and governance-aligned guidance into the workflows, for compliant and context-aware outcomes at scale.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>Those pillars are delivered through a handful of concrete mechanisms (that this hands-on lab will also exercise):</p>
+<table>
+<thead>
+<tr>
+<th>MECHANISM</th>
+<th>WHAT IT DOES</th>
+<th>LAB SECTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Specialized modes</strong></td>
+<td>Purpose-built AI personas for specific tasks. <strong>Z Architect</strong> plans and analyzes mainframe applications before any implementation; <strong>Z Code</strong> explains, generates, modifies and refactors mainframe code. Users can switch between modes without losing context.</td>
+<td>Module 1 runs in Z Architect; Modules 2 and 3 run in Z Code. Their presence in the mode selector is the visible proof that your entitlement is live</td>
+</tr>
+<tr>
+<td><strong>Workflows</strong></td>
+<td>Guided multi-step analyses with built-in prompts. Examples include <em>Explain code</em>, <em>Generate data dictionary</em>, <em>Extract business rules</em> and <em>Generate refactored service program</em></td>
+<td>Module 1 opens with the <em>Explain code</em> workflow</td>
+</tr>
+<tr>
+<td><strong>Skills</strong></td>
+<td>Reusable instructions that make a task run the same way every time, such as <em>impact-analysis</em>, <em>data-dictionary-management</em> and COBOL code generation.</td>
+<td>Module 1 (impact analysis), Module 2 (code generation) and Module 3 (the data-dictionary skill in Bob's to-do list)</td>
+</tr>
+<tr>
+<td><strong>Tools</strong></td>
+<td>The actions Bob can take: read and write files, run commands, scan the application into a metadata database (<code>scan_program</code>) and query it.</td>
+<td>Module 3 scans GenApp before it analyzes a single program</td>
+</tr>
+<tr>
+<td><strong>Rules and AGENTS.md</strong></td>
+<td>Repo-level files that set standards and guardrails for AI behavior, so outcomes are governed by default and predictable across teams.</td>
+<td><em>Registration and setup</em> creates <code>.bob/rules/file-organisation.md</code></td>
+</tr>
+<tr>
+<td><strong>zContext</strong></td>
+<td>Purpose-built IBM retrieval (RAG) that enriches the model with curated Z knowledge (languages, middleware, patterns and code samples) with no setup on your part</td>
+<td>Module 3's to-do list includes the step <em>Assess Z Context needs and call z_context_tool</em></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">WHY DO DATA DICTIONARIES MATTER?</p>
+<p>Mainframe variable names are terse, and a model that infers meaning from an abbreviation alone will guess. An enterprise-specific data dictionary gives Bob authoritative business context instead. In one documented example, a program's <code>VO-FILE</code> was explained as a <em>voucher/order transaction file</em> without a dictionary; with one, Bob correctly described the program as a flight-management routine that reads flight records for pilot statistics. The same context improves documentation, rule extraction and explanations while reducing hallucinations. You will see the <em>data-dictionary-management</em> skill appear in Bob's plan during Module 3.</p>
+</div>
+<p>Beyond the scope of this lab, the package also exposes enterprise-scale application metadata for architecture-aware analysis across hundreds of programs, and runtime awareness that captures execution paths and frequency patterns for production-aligned impact analysis.</p>
+<hr>
+<h2 id="iv-how-a-prompt-becomes-a-governed-workflow"><strong>iv. How a prompt becomes a governed workflow</strong></h2>
+<p>Any time that a user sends a prompt to Bob— such as <em>"Create a new COBOL program that does X using my coding standards"</em> —the <em>Premium Package for Z</em> works through four stages before it answers:</p>
+<ol>
+<li><strong>Intent analysis and mode selection</strong> — Bob interprets the request and confirms the mode best suited to it</li>
+<li><strong>Governance</strong> — Bob selects the applicable skills and the rules (or AGENTS.md) that constrain how the work is done</li>
+<li><strong>Execution</strong> — Bob selects its tools: scanning the application and querying the resulting metadata, retrieving variables, and reading and editing files</li>
+<li><strong>Reason and response</strong> — Bob synthesizes the results and reports back, with every file change presented as a diff for your approval</li>
+</ol>
+<p>You will witness this deterministic workflow in action within the hands-on work ahead. In <strong>Module 1</strong>, Bob recognizes an impact-analysis request, loads the corresponding skill, and drafts a to-do list before reading the copybook. In <strong>Module 3</strong>, Bob's first to-do list runs according to the same pattern: it confirms the metadata database and scans the application; invokes the data-dictionary skill and assesses Z Context needs; and only then does Bob read the three programs it was asked about.</p>
+<hr>
+<h2 id="v-the-environment-two-cics-applications"><strong>v. The environment: two CICS applications</strong></h2>
+<p>This lab works against two sample applications, each containing a small (but nevertheless realistic) CICS system of the kind found in banking and insurance estates.</p>
+<p><strong>The CICS Banking Sample Application (CBSA)</strong> is the subject of Modules 1 and 2. It is an enterprise-grade z/OS reference application that simulates core retail banking operations: customer onboarding and account management, together with deposits, withdrawals and fund transfers. It is built on IBM CICS Transaction Server for z/OS, Db2 for z/OS and VSAM, with a clear separation between its presentation, business service and data layers.</p>
+<table>
+<thead>
+<tr>
+<th>ARTIFACT</th>
+<th>ROLE IN THE APPLICATION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>29 COBOL programs under <code>cobol_src</code></td>
+<td>Presentation drivers, business logic services, an asynchronous credit bureau simulation and utilities</td>
+</tr>
+<tr>
+<td>9 BMS maps under <code>bms_src</code></td>
+<td>The 3270 screen layouts, including the main menu map <code>BNK1MAI</code></td>
+</tr>
+<tr>
+<td>Copybooks under <code>cobol_copy</code></td>
+<td>Shared record layouts and screen definitions, such as <code>BANKMAP.cpy</code> and <code>CUSTOMER.cpy</code></td>
+</tr>
+<tr>
+<td><code>BNKMENU</code></td>
+<td>The entry point (transaction <code>OMEN</code>) that routes users to each screen driver</td>
+</tr>
+<tr>
+<td><code>BANKDATA</code></td>
+<td>The batch utility that generates the application's data</td>
+</tr>
+<tr>
+<td><code>INQCUST</code></td>
+<td>The customer inquiry service that five other programs call</td>
+</tr>
+<tr>
+<td><code>CUSTOMER</code> (VSAM KSDS) and <code>ACCOUNT</code>, <code>PROCTRAN</code>, <code>CONTROL</code> (Db2)</td>
+<td>The persistence layer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>GenApp</strong>, the CICS general insurance sample application published by the CICS development team, is the subject of <strong>Module 3</strong>. Its policy programs (<code>LGAPDB01</code>, <code>LGUPDB01</code> and <code>LGDPDB01</code>) sit in the middle of a three-tier <code>LINK</code> chain that runs from the 3270 screen programs, through a business-logic tier, down to Db2 and VSAM. They share the <code>LGCMAREA</code> copybook as their <code>COMMAREA</code> contract and the <code>LGPOLICY</code> copybook for policy-specific definitions. Each of them validates requests in its own code, which is the duplication that <strong>Module 3</strong> consolidates into a single service.</p>
+<div class="admonition info">
+<p class="admonition-title">WHAT IS <code>CICS</code>?</p>
+<p><strong>CICS</strong> (Customer Information Control System) is IBM's transaction processing middleware on z/OS. A <em>transaction</em> starts a program; programs hand work to one another with <code>EXEC CICS LINK</code> and exchange data through a <strong>COMMAREA</strong> (communication area), a shared record whose layout lives in a copybook. Screens are defined as <strong>BMS</strong> (Basic Mapping Support) maps, which exist in two forms that must stay in sync: a physical map that CICS renders and a symbolic map that programs reference through a copybook. Data lives in <strong>VSAM</strong> files (a <strong>KSDS</strong> is a key-sequenced data set) and in <strong>Db2</strong> tables, and a program abends with a four-character code such as <code>ASRA</code> when it fails. Every one of these terms appears in the modules ahead.</p>
+</div>
+<p>Both applications are intentionally small. They nonetheless contain many of the same programming concepts found within the real-world COBOL systems of banks, insurers, governments and financial institutions. Working against a believable codebase from start to finish, rather than a series of disconnected snippets, lets you watch Bob operate the way it would inside a client's modernization initiative.</p>
+<hr>
+<h2 id="vi-lab-objectives"><strong>vi. Lab objectives</strong></h2>
+<div class="admonition note">
+<p class="admonition-title">TO EFFECTIVELY MODERNIZE, YOU MUST FIRST UNDERSTAND A CLIENT'S ESTATE</p>
+<p>Modernization projects frequently involve millions of lines of legacy code and decades of accumulated business logic. Rewriting that code is seldom the hardest part of the initiative. The far greater difficulty lies in understanding four things: what the application does, why it behaves that way, which business rules must be preserved, and how changes can be introduced safely. In the era of AI-generated code this understanding gains even greater significance. The developer's day shifts away from authorship and toward steering, constraining, verifying, and cleaning up what an agent produces. Judgment, in other words, becomes the scarce resource.</p>
+<p>Enterprise mainframe environments add a difficulty of their own. They are vast and highly interconnected, with tens of thousands of tightly coupled artifacts and poorly defined boundaries, which makes the impact of any change hard to assess. Establishing clear application and solution boundaries is the first step toward scoping and modernizing these systems safely, and it is the reason this lab insists on understanding before change. Module 1 traces the potential impact from any changes to a single field before even touching a line of code. Module 3 documents the business rules and maps the dependencies across two full reports before any snippets of code are adjusted.</p>
+<p>IBM Bob helps accelerate each of these activities, from application understanding and architecture discovery to code transformation, automated testing and documentation generation. All the while, the developer stays in control of the process.</p>
+</div>
+<p>This lab follows a realistic workflow for understanding and changing a mainframe application. You will use the Premium Package for Z to perform the same activities that teams undertake during modernization initiatives, organized across three modules that progress from analysis to change.</p>
+<table>
+<thead>
+<tr>
+<th>CHAPTER</th>
+<th>TOPIC</th>
+<th>WHAT YOU'LL TAKE AWAY</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="setup-ibmers/" target="_blank"><strong>Setup for IBMers</strong></a></td>
+<td><strong>IBM REGULAR EMPLOYEES ONLY.</strong> Register internally, request the Premium Package for Z entitlement through the w3 add-ons portal, install the extension and retrieve the CBSA source files with Bob</td>
+<td>A Bob IDE with the Z Code and Z Architect modes live, a workspace holding CBSA and the workspace rules Bob will follow</td>
+</tr>
+<tr>
+<td><a href="setup-partners/" target="_blank"><strong>Setup for Business Partners</strong></a></td>
+<td><strong>BUSINESS PARTNERS ONLY.</strong> Request the entitlement through IBM Technology Zone, bind the IDE to it and complete the same workspace setup</td>
+<td>The same validated environment, with no IBM intranet access required</td>
+</tr>
+<tr>
+<td><a href="analyze/1-1/" target="_blank"><strong>1. Analyze</strong></a></td>
+<td><strong>ALL AUDIENCES.</strong> Explain a program with the <em>Explain code</em> workflow, document the CBSA architecture in Z Architect mode and trace the full impact of shrinking one copybook field</td>
+<td>Application understanding produced in minutes, with an impact report that separates true dependencies from look-alike fields</td>
+</tr>
+<tr>
+<td><a href="build/2-1/" target="_blank"><strong>2. Build</strong></a></td>
+<td><strong>ALL AUDIENCES.</strong> Ask Bob for a plan to add customer search by email, review it, have Bob implement the COBOL and verify its syntax</td>
+<td>The plan-first habit, and a generated program that follows the conventions of the surrounding suite</td>
+</tr>
+<tr>
+<td><a href="refactor/3-1/" target="_blank"><strong>3. Refactor</strong></a></td>
+<td><strong>ALL AUDIENCES.</strong> Identify GenApp's duplicated validation rules, map their dependencies, extract them into a shared <code>LGPOLVAL</code> service and wire the callers to it</td>
+<td>A monolith refactored in place, with every rule traced to its source and every change approved as a diff</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="vii-lab-prerequisites"><strong>vii. Lab prerequisites</strong></h2>
+<p>The hands-on work ahead assumes you have completed the core curriculum of the <em>Climbing the AI Maturity Curve</em> L3 course, or that you hold equivalent familiarity with the Bob IDE and the Agentic Sidebar as well as Rules and AGENTS.md. Your environment begins as a fresh workspace: nothing from the <em>Galaxium Travels</em> project carries over, and Bob retrieves the mainframe source files for you with a sparse <code>git clone</code>, so you will not work with Git directly.</p>
+<hr>
+<p>What you <strong><em>do</em></strong> need:</p>
+<div class="admonition success">
+<p class="admonition-title">REQUIREMENTS</p>
+<ul>
+<li><strong>IBM Bob</strong> installed and authenticated: the <em>Registration and setup</em> chapter has two versions (for IBM regular employees and IBM business partners)</li>
+<li>Your <strong>IBMid</strong> credentials are at hand (IBM regular employees sign in with their w3id)</li>
+<li><strong>IBM regular employees:</strong> access to the <strong><a href="https://w3.ibm.com/w3publisher/bob/addons" target="_blank">w3 add-ons portal</a></strong> to request the Premium Package for Z entitlement. Approval is manual and takes 24 to 48 hours, so request it before the day you plan to run the lab</li>
+<li><strong>Business Partners:</strong> access to <strong>IBM Technology Zone</strong> to request the Premium Package for Z entitlement</li>
+<li>Internet access to <strong>github.com</strong>, where both sample applications are hosted</li>
+<li>A local folder is available to serve as your Bob project workspace</li>
+</ul>
+<p>No additional downloads or staged files are required before you begin.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">BUSINESS PARTNERS</p>
+<p><strong>Business Partners</strong> obtain their entitlement through IBM Technology Zone and follow their own Setup page, <strong><a href="setup-partners/" target="_blank">Business Partners | Registration and setup</a></strong>. That route is fully self-contained and requires neither the w3 add-ons portal nor an IBM intranet connection.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">A WORD ON TOKEN BUDGETS</p>
+<p>Every module ends with a reminder to watch your Bob token budget. Mainframe applications involve large and interconnected codebases, so the prompts in this lab consume more than a comparable task on a small project. Finish each module's prompts before you experiment with the optional variations.</p>
+</div>
+<hr>
+<h2 id="viii-next-steps"><strong>viii. Next steps</strong></h2>
+<p>In the chapter ahead, you will register for IBM Bob and obtain the Premium Package for Z entitlement, in accordance with your job role:</p>
+<div class="admonition quote">
+<ul>
+<li><strong><a href="https://bienko.github.io/bob-ppz/setup-ibmers/" target="_blank">IBM regular employees</a></strong> through the w3 add-ons portal</li>
+<li><strong><a href="https://bienko.github.io/bob-ppz/setup-partners/" target="_blank">Business Partners</a></strong> through IBM Technology Zone</li>
+</ul>
+</div>
+<p>All participants will afterwards install the PPZ extension and its companions, then have Bob retrieve the CBSA source files into a fresh workspace. The first module begins by analyzing CBSA: a business-level explanation of one program, an architecture document for the whole application and an impact analysis for a single field change. That understanding is the foundation for the feature you build in <em>Module 2</em> and the refactoring you carry out in <em>Module 3</em>.</p>
+<hr></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="toc/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Table of Contents">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Table of Contents
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="setup-ibmers/" class="md-footer__link md-footer__link--next" aria-label="Next: For IBM regular employees">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                For IBM regular employees
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 IBM
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "content.code.annotate", "content.code.copy", "content.code.select", "navigation.footer"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="js/print-site.js"></script>
+      
+        <script src="_static/hide-toc-nav.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

@@ -1,0 +1,2007 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="IBM Bob Premium Package for Z Level 3">
+      
+      
+        <meta name="author" content="Christopher Bienko (cdbienko@us.ibm.com)">
+      
+      
+      
+        <link rel="prev" href="../../build/2-1/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Monolithic COBOL refactoring and service integration - IBM Bob Premium Package for Z Level 3</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../../styles/override-print.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#monolithic-cobol-refactoring-and-service-integration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="IBM Bob Premium Package for Z Level 3" class="md-header__button md-logo" aria-label="IBM Bob Premium Package for Z Level 3" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IBM Bob Premium Package for Z Level 3
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Monolithic COBOL refactoring and service integration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="IBM Bob Premium Package for Z Level 3" class="md-nav__button md-logo" aria-label="IBM Bob Premium Package for Z Level 3" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    IBM Bob Premium Package for Z Level 3
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../toc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Table of Contents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registration and setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Registration and setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup-ibmers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For IBM regular employees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup-partners/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For IBM business partners
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Analyze
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Analyze
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../analyze/1-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding the CICS banking sample application
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Build
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Build
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../build/2-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing a new feature in COBOL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Refactor
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Refactor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monolithic COBOL refactoring and service integration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monolithic COBOL refactoring and service integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#i-from-duplication-to-a-shared-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        i. From duplication to a shared service
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ii. Why this matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-retrieve-the-genapp-lab-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iii. Retrieve the GenApp lab files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-identifying-the-business-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iv. Identifying the business rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-checking-the-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v. Checking the dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vi-creating-the-validation-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vi. Creating the validation service
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vii-adding-the-link-code-to-the-main-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vii. Adding the link code to the main programs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viii-key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        viii. Key takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ix-earn-accreditation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ix. Earn accreditation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#i-from-duplication-to-a-shared-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        i. From duplication to a shared service
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ii. Why this matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-retrieve-the-genapp-lab-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iii. Retrieve the GenApp lab files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-identifying-the-business-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iv. Identifying the business rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-checking-the-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v. Checking the dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vi-creating-the-validation-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vi. Creating the validation service
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vii-adding-the-link-code-to-the-main-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vii. Adding the link code to the main programs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viii-key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        viii. Key takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ix-earn-accreditation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ix. Earn accreditation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<div><p><strong>MODULE 3 | REFACTOR</strong></p>
+<h1 id="monolithic-cobol-refactoring-and-service-integration"><strong>MONOLITHIC COBOL REFACTORING AND SERVICE INTEGRATION</strong></h1>
+<hr>
+<h2 id="i-from-duplication-to-a-shared-service"><strong>i. From duplication to a shared service</strong></h2>
+<p></p><div class="video-container"><video style="position:relative;width:100%;height:22.172vw" controls="" alt="type:video"><source src="../_videos/Refactor%20%5BBob%20PPZ%20L3%5D.mp4" type="video/mp4"></video></div><p></p>
+<div class="admonition note">
+<p>Christopher Bienko <em>(AI Enablement GTM Product Manager)</em> provides an overview of the <em>Refactor</em> module for the hands-on enablement. <strong><a href="https://ibm.seismic.com/Link/Content/DChC9BfQ6ggjV8fPTFP392j87hXB" target="_blank">[4 min]</a></strong></p>
+</div>
+<p>Each of the <strong>GenApp</strong> policy programs validates incoming requests in its own code. The same checks are written out separately in the programs that add, update and delete a policy — so a change to one rule has to be made in several places.</p>
+<p>In this module you will use IBM Bob to consolidate that logic. Bob will identify the validation rules and map everything that depends on them, move them into a single service program called <code>LGPOLVAL</code>, and update the original programs to call that service in place of their own checks.</p>
+<div class="admonition quote">
+<p><strong>The programs you will work with across <em>Module 3 | Refactor</em> include:</strong></p>
+<table>
+<thead>
+<tr>
+<th>PROGRAM</th>
+<th>WHAT IT DOES</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LGAPDB01</code></td>
+<td>Adds a policy</td>
+</tr>
+<tr>
+<td><code>LGUPDB01</code></td>
+<td>Updates a policy</td>
+</tr>
+<tr>
+<td><code>LGDPDB01</code></td>
+<td>Deletes a policy</td>
+</tr>
+<tr>
+<td><code>LGAPVS01</code></td>
+<td>The VSAM program that <code>LGAPDB01</code> calls when it adds a policy</td>
+</tr>
+<tr>
+<td><code>LGPOLVAL</code></td>
+<td>The new validation service, which does not yet exist. Bob creates it in section vi</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The module is deliberately structured. <em>Sections iv</em> and <em>v</em> are analysis only: Bob reads the code and produces documentation, and no source file is modified until the rules and their dependencies have been established. The refactoring itself begins in <em>section vi</em>.</p>
+<hr>
+<h2 id="ii-why-this-matters"><strong>ii. Why this matters</strong></h2>
+<p>Refactoring a monolithic application is rarely as simple as cutting code out of one program and pasting it into another. The same rule is often written slightly differently in each place it appears, and the surrounding programs may depend on it in ways that were never documented.</p>
+<div class="admonition note">
+<p>Agentic AI is well suited to this work because it:</p>
+<ul>
+<li><strong>Locates the rules in the source code</strong> and records where each one lives, down to the program and line number</li>
+<li><strong>Maps the dependencies before any code is moved</strong>, including calling programs, Db2 tables and shared copybooks</li>
+<li><strong>Produces documentation and test cases as part of the work</strong>, rather than leaving them for later</li>
+<li><strong>Keeps the human in the loop</strong>: every file change is presented for your review and approval before it is applied</li>
+</ul>
+</div>
+<table>
+<thead>
+<tr>
+<th>TASK</th>
+<th>WITH: Manual Analysis</th>
+<th>WITH: IBM Bob Premium Package for Z</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Business rules</td>
+<td>Read out of each program by hand</td>
+<td>Documented from the source, with program and line references</td>
+</tr>
+<tr>
+<td>Dependency mapping</td>
+<td>Cross-referencing programs, tables, and copybooks</td>
+<td>One mapping document with a dependency graph and diagrams</td>
+</tr>
+<tr>
+<td>Shared service</td>
+<td>Written by hand and documented afterwards</td>
+<td>Generated together with its documentation and test cases</td>
+</tr>
+<tr>
+<td>Integration</td>
+<td>Each calling program edited and checked separately</td>
+<td>Each edit proposed as a diff that you approve</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="iii-retrieve-the-genapp-lab-files"><strong>iii. Retrieve the GenApp lab files</strong></h2>
+<p>This module introduces a second application. <strong>GenApp</strong> is the CICS general insurance sample application published by the IBM CICS development team on GitHub, and its policy programs contain the duplicated validation logic that this module consolidates. The retrieval follows the same procedure you used for the CBSA files during <em>Registration and setup</em>: Bob, in Agent mode, performs a sparse <code>git clone</code> on your behalf.</p>
+<hr>
+<ol>
+<li>
+<p>Create a dedicated workspace folder for GenApp.</p>
+<ul>
+<li>From the menu bar, select <strong>File</strong> › <strong>Open Folder...</strong> and click <strong>New folder</strong>.</li>
+<li>Name the folder <code>Bob PPZ L3 GenApp</code> and select it to open it as your workspace.</li>
+</ul>
+<p>If the <strong>Welcome to IBM Z Open Editor in IBM Bob</strong> and <strong>Welcome to IBM Bob Premium Package for Z</strong> tabs open again, close them by clicking the <span class="keys"><kbd class="key-x">X</kbd></span> button on each tab.</p>
+<div class="admonition note">
+<p>This is the same procedure you followed to create the <code>Bob PPZ L3</code> workspace during setup.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">WHY A SEPARATE WORKSPACE?</p>
+<p>Z Code mode draws its answers from a scanned metadata database of the application in the current workspace, and the workspace rules you created during setup identify CBSA as the application in scope. Giving GenApp a workspace of its own keeps both the scan and the rules scoped to a single application.</p>
+</div>
+</li>
+</ol>
+<hr>
+<ol start="2">
+<li>
+<p>Near the bottom of the Agentic Sidebar, confirm that the <strong>Mode toggle</strong> reads <strong>Agent</strong>.</p>
+<p><strong>Copy and paste</strong> the following prompt into the Agentic Sidebar and press <span class="keys"><kbd class="key-enter">Enter</kbd></span> (or click the send button) to submit it:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Retrieve the sub-directory named "base" from the GitHub repository https://github.com/cicsdev/cics-genapp.git and place it in the current workspace folder. Then remove any temporary working directory you would have created.
+</code></pre></div>
+<p>The <code>base</code> sub-directory holds the GenApp COBOL programs and copybooks under <code>base/src/</code>, along with the JCL and Db2 definitions that Bob consults when it maps the dependencies later in this module.</p>
+</li>
+</ol>
+<hr>
+<ol start="3">
+<li>
+<p>Bob plans its approach and pauses at the <em>Tools awaiting approval</em> checkpoint before running any shell command. </p>
+<ul>
+<li>Click <strong>Approve for task</strong>.</li>
+<li>Bob clones the repository into a temporary directory, pauses for a second approval before copying <code>base</code> into the workspace, and then removes the temporary directory.</li>
+<li><strong>Approve</strong> the second request in the same way.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<ol start="4">
+<li>
+<p>When Bob reports that the task is complete, <strong>expand</strong> <code>base</code> › <code>src</code> in the <em>Explorer</em> tab and confirm that the folder contains the GenApp programs and copybooks.</p>
+<div class="admonition note">
+<p><strong>Confirm that the four programs this module works with are present:</strong></p>
+<ul>
+<li><code>lgapdb01.cbl</code></li>
+<li><code>lgupdb01.cbl</code></li>
+<li><code>lgdpdb01.cbl</code></li>
+<li><code>lgapvs01.cbl</code></li>
+</ul>
+<p>The <code>lgcmarea.cpy</code> and <code>lgpolicy.cpy</code> copybooks should be present as well.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">WHY USE LOWER-CASE FILE NAMES?</p>
+<p>The repository stores its source files in lower case, so the program <code>LGAPDB01</code> is found in the file <code>base/src/lgapdb01.cbl</code>. This module refers to programs by their upper-case names, which is also how Bob refers to them in its reports.</p>
+</div>
+</li>
+</ol>
+<hr>
+<h2 id="iv-identifying-the-business-rules"><strong>iv. Identifying the business rules</strong></h2>
+<p>Before any logic can be moved, it has to be identified. In this section Bob reads the three Db2 policy programs and documents every validation rule it finds within them.</p>
+<hr>
+<ol>
+<li>
+<p>Near the bottom of the Agentic Sidebar, click the <strong>Mode toggle</strong> (which currently reads <strong>Agent</strong>) to expand the list of available modes.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/d6c16754-92af-49fd-a181-62e1a58e535c/user_cropped_screenshot_538928ee98504e598b92eba5ff22a7ea_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/d6c16754-92af-49fd-a181-62e1a58e535c/user_cropped_screenshot_538928ee98504e598b92eba5ff22a7ea_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="2">
+<li>
+<p>Select <strong>Z Code</strong> from the list.</p>
+<div class="admonition info">
+<p class="admonition-title">WHY Z CODE MODE?</p>
+<p>Z Code mode specializes in explaining, modifying and modernizing mainframe application code. It works at the level of programs, paragraphs, copybooks and CICS commands. You will remain in this mode for the remainder of the module.</p>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/34e844da-ac54-416c-a2c2-61e7116377c8/user_cropped_screenshot_54524c180a234e86bba3a902a5fabe79_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/34e844da-ac54-416c-a2c2-61e7116377c8/user_cropped_screenshot_54524c180a234e86bba3a902a5fabe79_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="3">
+<li>
+<p><strong>Copy and paste</strong> the following prompt into the Agentic Sidebar session window:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Analyze LGDPDB01, LGAPDB01, and LGUPDB01. Identify all policy validation business rules including policy number format checks, policy type validation, and customer-policy relationship verification.
+</code></pre></div>
+<p>With the prompt entered, hit <span class="keys"><kbd class="key-enter">Enter</kbd></span> or press the <strong>Send</strong> button to the right of the chat interface.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/9a738e1f-c3b9-486e-844e-716b3e45b136/user_cropped_screenshot_0fa259613e6f4e8fbc2ab0169c7d2f54_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/9a738e1f-c3b9-486e-844e-716b3e45b136/user_cropped_screenshot_0fa259613e6f4e8fbc2ab0169c7d2f54_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="4">
+<li>
+<p>Bob begins the task by checking whether a scanned metadata database of the application already exists in the workspace. To follow the plan Bob has set for itself, click the <strong>to-do list</strong> icon at the top right of the Agentic Sidebar.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/9f0f3454-1c65-4e7c-9253-283b41c3e21c/user_cropped_screenshot_6f409ff43c3746e6a082a009444e78bb_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/9f0f3454-1c65-4e7c-9253-283b41c3e21c/user_cropped_screenshot_6f409ff43c3746e6a082a009444e78bb_text_export.jpeg" alt="" width="600"></a>
+</p>
+<div class="admonition info">
+<p class="admonition-title">IF BOB ASKS ABOUT SCANNING THE APPLICATION</p>
+<p>If no scanned database exists yet, Bob will ask whether to scan the application before proceeding with the analysis. Select <strong>Yes, scan the application now</strong>. When asked which language to scan, select <strong>COBOL</strong>. The analysis continues automatically once the scan completes.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">APPROVING TOOL REQUESTS</p>
+<p>Depending on your auto-approve settings, Bob may ask permission before it reads files or uses a tool. Click <strong>Approve</strong> for each request as it appears.</p>
+</div>
+</li>
+</ol>
+<hr>
+<ol start="5">
+<li>
+<p>Bob drafts a to-do list of seven items and works through them in sequence, checking each one off as it finishes. Notice the order of the list: Bob gathers context before it reads the code, and reads the code before it analyzes anything.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>TASK</th>
+<th>OBJECTIVES</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Read <code>.bobz/local-settings.json</code> to confirm database location</td>
+<td>Checks whether a scanned database of the application already exists</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Scan application with <code>scan_program</code> tool</td>
+<td>Builds that database so it can answer from it</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Invoke <code>data-dictionary-management</code> skill before reading COBOL files</td>
+<td>Checks whether a data dictionary exists that would give the field names business meaning</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Read source files directly for analysis</td>
+<td>Reads the three programs and the copybooks they use</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Assess Z Context needs and call <code>z_context_tool</code> if required</td>
+<td>Decides whether it needs more context about the z/OS environment before it answers</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Analyze policy validation business rules across <code>LGDPDB01</code>, <code>LGAPDB01</code>, and <code>LGUPDB01</code></td>
+<td>The analysis the prompt requested</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Deliver structured findings report</td>
+<td>Writes up the findings in the chat</td>
+</tr>
+</tbody>
+</table>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/a1bc5438-077a-4609-ba59-fc28ff1b1b2c/user_cropped_screenshot_0c74a297618a4339a816a329dd23926c_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/a1bc5438-077a-4609-ba59-fc28ff1b1b2c/user_cropped_screenshot_0c74a297618a4339a816a329dd23926c_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="6">
+<li>
+<p>When all tasks are completed, Bob posts its report in the chat. The report opens with a <strong>Program Architecture Overview</strong> that places the three programs in context. Each is the database tier of a CICS <code>LINK</code> chain.</p>
+<div class="admonition quote">
+<p>It is called by one of the <strong>business-logic programs</strong> (<code>LGAPOL01</code>, <code>LGDPOL01</code> or <code>LGUPOL01</code>) and in turn calls one of the <strong>VSAM-tier programs</strong> (<code>LGAPVS01</code>, <code>LGDPVS01</code> or <code>LGUPVS01</code>).</p>
+<p>All three share the <code>LGCMAREA</code> copybook as their <code>COMMAREA</code> contract, and the policy-specific column lengths are defined in <code>LGPOLICY</code>.</p>
+</div>
+<p>Below the overview, the rules are grouped by category. Each rule is assigned an ID and lists the programs it applies to, the condition that triggers it and the resulting outcome.</p>
+<div class="admonition quote">
+<p>The first category, the <strong>COMMAREA presence check</strong>, illustrates the format:</p>
+<ul>
+<li><strong>BR-01</strong>: a <code>COMMAREA</code> must be present. If <code>EIBCALEN = 0</code>, the program abends with code <code>LGCA</code> and the whole unit of work is rolled back</li>
+<li><strong>BR-02</strong>: the <code>COMMAREA</code> must meet the minimum header length. If <code>EIBCALEN &lt; 28</code>, the program returns <code>CA-RETURN-CODE = '98'</code> and exits cleanly</li>
+</ul>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/9ec6cf52-abb6-4b0e-9d00-5b723a2827e0/user_cropped_screenshot_1eba790c203d499286cf72fe259dc5e7_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/9ec6cf52-abb6-4b0e-9d00-5b723a2827e0/user_cropped_screenshot_1eba790c203d499286cf72fe259dc5e7_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="7">
+<li>
+<p>Scroll to the end of the report, which closes with a <strong>Return Code Summary</strong>, a list of <strong>Key Business Rule Gaps</strong> and a <strong>Summary of Findings</strong>. In the documented run, Bob identified 18 distinct business rules across 5 categories.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/11cb6981-c34c-44a0-9dc2-2f7be0469a0a/user_cropped_screenshot_da755d5b3f3f4b4ea5965db89b788852_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/11cb6981-c34c-44a0-9dc2-2f7be0469a0a/user_cropped_screenshot_da755d5b3f3f4b4ea5965db89b788852_text_export.jpeg" alt="" width="600"></a>
+</p>
+<p>The return code table summarizes how the three programs report problems:</p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+<th>Programs that return it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>00</code></td>
+<td>Success</td>
+<td>All</td>
+</tr>
+<tr>
+<td><code>01</code></td>
+<td>Policy not found</td>
+<td><code>LGUPDB01</code></td>
+</tr>
+<tr>
+<td><code>02</code></td>
+<td>Optimistic lock failure, timestamps do not match</td>
+<td><code>LGUPDB01</code></td>
+</tr>
+<tr>
+<td><code>70</code></td>
+<td>Customer does not exist</td>
+<td><code>LGAPDB01</code></td>
+</tr>
+<tr>
+<td><code>90</code></td>
+<td>Generic DB2 error</td>
+<td>All</td>
+</tr>
+<tr>
+<td><code>98</code></td>
+<td>COMMAREA too short for the requested operation</td>
+<td>All</td>
+</tr>
+<tr>
+<td><code>99</code></td>
+<td>Unrecognised or unsupported request ID</td>
+<td>All</td>
+</tr>
+</tbody>
+</table>
+<p>The gaps deserve particular attention, since they describe conditions that the code does <em>not</em> check. Bob found three in the documented run. The programs do not validate against duplicate policies on add, and they perform no explicit date validation. There is also a case-sensitivity gap: <code>LGDPOL01</code> uppercases the request ID before calling <code>LGDPDB01</code>, whereas a lowercase ID sent directly to <code>LGDPDB01</code> is rejected with return code <code>99</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">RESPONSES MAY VARY</p>
+<p>Due to the nature of generative AI, the wording of Bob's report will differ from the screenshots. The number of rules, their IDs and the categories they are sorted into may not match either. Before continuing, confirm that the report addresses each element of the prompt:</p>
+<ul>
+<li>Rules from all three programs: <code>LGDPDB01</code>, <code>LGAPDB01</code> and <code>LGUPDB01</code></li>
+<li>The policy number format checks</li>
+<li>The policy type validation</li>
+<li>The customer-policy relationship verification</li>
+</ul>
+</div>
+</li>
+</ol>
+<hr>
+<h2 id="v-checking-the-dependencies"><strong>v. Checking the dependencies</strong></h2>
+<p>With the rules documented, the next step is to establish what else touches these programs before any logic is moved. That means the programs that call them, the Db2 tables they read and write, and the copybooks they share. Each of these can be affected by the refactoring.</p>
+<p>The prompt for this section has four parts, and Bob addresses each in turn:</p>
+<table>
+<thead>
+<tr>
+<th>What the prompt asks</th>
+<th>What Bob does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Map all programs that perform policy validation</td>
+<td>Identifies every program in which the request ID is inspected, the COMMAREA length is checked or a business rule is enforced. This extends beyond the three Db2 programs into the business-logic tier above them</td>
+</tr>
+<tr>
+<td>Check which programs call these validators</td>
+<td>Traces the CICS <code>LINK</code> chain from the screen programs at the top, through the business-logic programs, down to the Db2 and VSAM tiers</td>
+</tr>
+<tr>
+<td>Check which DB2 tables are accessed</td>
+<td>Builds a matrix of tables against programs, with the SQL operation each program performs on each table</td>
+</tr>
+<tr>
+<td>Identify shared copybooks</td>
+<td>Lists each copybook, its purpose and every program that includes it</td>
+</tr>
+</tbody>
+</table>
+<p>Because this prompt is a follow-up within the same task, Bob builds on the findings of the first report rather than starting over. It also renders its diagrams as images and opens them in the editor as it works.</p>
+<hr>
+<ol>
+<li>
+<p>With <strong>Z Code</strong> mode still active, <strong>copy and paste</strong> the following prompt into the Agentic Sidebar session window. The previous report should still be visible above the input field; this prompt builds on it, so do not start a new task.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Map all programs that perform policy validation. Check which programs call these validators and which DB2 tables are accessed. Identify shared copybooks.
+</code></pre></div>
+<p>Hit <span class="keys"><kbd class="key-enter">Enter</kbd></span> or press the <strong>Send</strong> button.</p>
+<div class="admonition note">
+<p class="admonition-title">THE REPORT IS GENERATED IN STAGES</p>
+<p>This report is lengthy and Bob reports it one section at a time. While Bob is still writing, the status beneath the chat reads <em>Still on it...</em> as it works.</p>
+<p><strong>Wait</strong> until the input field reads <em>Follow up or start new task</em> before scrolling to the summary at the end.</p>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/d0878ac4-d83e-4253-be41-fed159331e13/user_cropped_screenshot_ce1ea6aab39341f8ace3dbd4efd57e26_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/d0878ac4-d83e-4253-be41-fed159331e13/user_cropped_screenshot_ce1ea6aab39341f8ace3dbd4efd57e26_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="2">
+<li>
+<p>The report opens with a legend for the program names, followed by the <strong>three-tier architecture</strong> of the policy validation chain: every policy change passes through a business-logic program, a Db2 program and a VSAM program before it completes. Beneath the diagram, the <strong>Programs That Perform Policy Validation</strong> table lists every program that performs validation. Each row records the program's tier and operations.</p>
+<div class="admonition quote">
+<p><strong>The table that Bob generates provides answers to the first part of the previous prompt. In the documented run (screenshot below) it includes details on:</strong></p>
+<ul>
+<li><strong>The four business-logic programs:</strong> <code>LGIPOL01</code>, <code>LGAPOL01</code>, <code>LGDPOL01</code> and <code>LGUPOL01</code>. These verify that the COMMAREA is present and of sufficient length before any other processing takes place. <code>LGDPOL01</code> additionally uppercases the request ID, and <code>LGUPOL01</code> checks the length per policy type</li>
+<li><strong>The Db2 programs:</strong> <code>LGAPDB01</code> relies on a Db2 foreign key to confirm that the customer exists, and <code>LGIPDB01</code> confirms that the customer and policy match by means of a <code>JOIN</code></li>
+</ul>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/39e17f3e-1d71-4648-8b97-4cae531fdad9/user_cropped_screenshot_dec5883c228a4d84bbb6e28433f42997_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/39e17f3e-1d71-4648-8b97-4cae531fdad9/user_cropped_screenshot_dec5883c228a4d84bbb6e28433f42997_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="3">
+<li>
+<p>Scroll to <strong>DB2 Tables Accessed Per Program</strong>, which answers the third part of the prompt. The matrix has one row per table and one column per Db2 program, and each cell shows the SQL operation that program performs against that table.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/3d9ffae7-ec53-4662-b546-a938b7b32fa4/user_cropped_screenshot_956cfe5268c84bef9196a283e597b16e_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/3d9ffae7-ec53-4662-b546-a938b7b32fa4/user_cropped_screenshot_956cfe5268c84bef9196a283e597b16e_text_export.jpeg" alt="" width="600"></a>
+</p>
+<div class="admonition quote">
+<p><strong>Three observations follow from this matrix:</strong></p>
+<ul>
+<li><strong>Every program accesses <code>POLICY</code></strong>, and each uses it differently. <code>LGIPDB01</code> joins against it, while <code>LGAPDB01</code> inserts into it and reads the timestamp back. <code>LGDPDB01</code> deletes from it, and <code>LGUPDB01</code> updates it through a cursor</li>
+<li><strong>The policy-type tables cascade on delete.</strong> <code>LGDPDB01</code> deletes only from <code>POLICY</code>; the corresponding <code>ENDOWMENT</code>, <code>HOUSE</code>, <code>MOTOR</code> and <code>COMMERCIAL</code> rows are removed by a foreign-key constraint rather than by program code</li>
+<li><strong><code>COMMERCIAL</code> policies cannot be updated.</strong> <code>LGUPDB01</code> has no code path for them, which corresponds to one of the gaps Bob reported in the previous section</li>
+</ul>
+</div>
+<p>Beneath the matrix, <strong>Key SQL Patterns by Program</strong> describes how each program interacts with Db2. <code>LGIPDB01</code> uses four different <code>SELECT</code> strategies for commercial policies alone; <code>LGAPDB01</code> inserts in two phases and reads the generated policy number back in between; and <code>LGUPDB01</code> locks the row with a cursor before updating it.</p>
+</li>
+</ol>
+<hr>
+<ol start="4">
+<li>
+<p>Continue to <strong>Shared Copybooks Across the Policy Validation Chain</strong>, where Bob draws the copybook dependencies as a diagram and then lists them in the <strong>Copybook Usage Matrix</strong>, recording the purpose of each copybook and the programs that include it.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/ab4fe5b2-6aaa-41a9-a532-5856953ada09/user_cropped_screenshot_277d55225bfd431ab106c68921a26635_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/ab4fe5b2-6aaa-41a9-a532-5856953ada09/user_cropped_screenshot_277d55225bfd431ab106c68921a26635_text_export.jpeg" alt="" width="600"></a>
+</p>
+<table>
+<thead>
+<tr>
+<th>Copybook</th>
+<th>Purpose</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LGCMAREA.cpy</code></td>
+<td>The <code>COMMAREA</code> contract shared by every request and response</td>
+<td>21 programs, including every program in the policy chain</td>
+</tr>
+<tr>
+<td><code>LGPOLICY.cpy</code></td>
+<td>Db2 host variable structures and the policy-type length constants</td>
+<td>9 programs, including all four Db2 programs</td>
+</tr>
+<tr>
+<td><code>SQLCA</code></td>
+<td>The Db2 SQL communications area</td>
+<td>8 programs, every one that runs SQL</td>
+</tr>
+<tr>
+<td><code>SSMAP</code></td>
+<td>BMS map field definitions for the terminal screens</td>
+<td>The five screen programs, <code>LGTESTP1</code> to <code>LGTESTP4</code> and <code>LGTESTC1</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>LGCMAREA</code> is the copybook that matters most for the next section. Two of its fields pass through every tier: <code>CA-REQUEST-ID</code> routes the request and gates the validation, and <code>CA-RETURN-CODE</code> carries the result back to the caller. Whatever the new service needs from the <code>COMMAREA</code> will have to be read through this copybook, in the same way the existing programs read it.</p>
+</li>
+</ol>
+<hr>
+<ol start="5">
+<li>
+<p>The report concludes with a <strong>Policy Validation Program Map</strong>: a single diagram that ties the entire chain together, running from the four screen programs on the left through the business-logic and Db2 tiers to the VSAM programs on the right. The shared copybooks appear across the top, and a summary table beneath the diagram counts the programs by role.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/c2fe0965-8e48-419e-b9b1-874c630544b0/user_cropped_screenshot_d26bdcbc60e84ef180ceef9c84810d03_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/c2fe0965-8e48-419e-b9b1-874c630544b0/user_cropped_screenshot_d26bdcbc60e84ef180ceef9c84810d03_text_export.jpeg" alt="" width="600"></a>
+</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Count</th>
+<th>Programs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Policy validators, all tiers</td>
+<td>8</td>
+<td><code>LGIPOL01</code>, <code>LGAPOL01</code>, <code>LGDPOL01</code>, <code>LGUPOL01</code>, <code>LGIPDB01</code>, <code>LGAPDB01</code>, <code>LGDPDB01</code>, <code>LGUPDB01</code></td>
+</tr>
+<tr>
+<td>Screen programs that call the validators</td>
+<td>4</td>
+<td><code>LGTESTP1</code> to <code>LGTESTP4</code></td>
+</tr>
+<tr>
+<td>VSAM programs downstream</td>
+<td>3</td>
+<td><code>LGAPVS01</code>, <code>LGDPVS01</code>, <code>LGUPVS01</code></td>
+</tr>
+<tr>
+<td>Shared error logger</td>
+<td>1</td>
+<td><code>LGSTSQ</code></td>
+</tr>
+<tr>
+<td>Statistics and event processor</td>
+<td>1</td>
+<td><code>LGASTAT1</code></td>
+</tr>
+</tbody>
+</table>
+<p>Above the map, Bob notes that <code>LGPOLICY</code> serves two purposes in a single file: it holds the length constants that the business-logic programs use to validate the <code>COMMAREA</code>, together with the Db2 host variable structures that the Db2 programs use as <code>SELECT</code> targets. Details of this kind determine where a shared service must draw its definitions from.</p>
+<div class="admonition warning">
+<p class="admonition-title">RESPONSES MAY VARY</p>
+<p>As with the first report, Bob may order the sections differently or draw the diagrams another way, and the counts in the summary table can shift by a program or two from one run to the next. Before continuing, confirm that the report addresses each element of the prompt:</p>
+<ul>
+<li>Every program that performs policy validation, beyond the three Db2 programs you began with</li>
+<li>The programs that call them, from the screen programs downward</li>
+<li>The Db2 tables each program accesses, and the operations performed</li>
+<li>The shared copybooks, and the programs that include each one</li>
+</ul>
+</div>
+</li>
+</ol>
+<hr>
+<h2 id="vi-creating-the-validation-service"><strong>vi. Creating the validation service</strong></h2>
+<p>This section is the first in which source code is written. Bob creates a new COBOL program, <code>LGPOLVAL</code>, and moves the validation logic out of the existing programs and into it.</p>
+<p>The prompt has two parts. In the documented run, Bob addressed both and then took one additional step on its own initiative:</p>
+<table>
+<thead>
+<tr>
+<th>What the prompt asks</th>
+<th>What Bob does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create <code>LGPOLVAL</code> service that consolidates policy validation rules</td>
+<td>Writes the new <code>LGPOLVAL</code> program together with a <code>LGPOLVAL.cpy</code> copybook that defines the <code>COMMAREA</code> through which callers communicate with the service</td>
+</tr>
+<tr>
+<td>Extract validation logic from <code>LGDPDB01</code>, <code>LGAPDB01</code>, <code>LGAPVS01</code> and <code>LGUPDB01</code></td>
+<td>Takes each rule identified in section iv, records its origin and implements it as a check inside the service</td>
+</tr>
+<tr>
+<td><em>Not requested until section vii</em></td>
+<td>Updates the three Db2 programs to call the service, so that the extracted logic does not remain active in two places</td>
+</tr>
+</tbody>
+</table>
+<p>Because this prompt is a follow-up within the same task, Bob already holds the rules and dependencies from the two previous reports and uses them to decide what belongs in the service and what the calling programs retain.</p>
+<hr>
+<ol>
+<li>
+<p>With <strong>Z Code</strong> mode still active, copy and paste the following prompt into the Agentic Sidebar session window. The dependency report from the previous section should still be visible above the input field.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Create LGPOLVAL service that consolidates policy validation rules. Extract validation logic from LGDPDB01, LGAPDB01, LGAPVS01 and LGUPDB01 into the new service.
+</code></pre></div>
+<p>Hit <span class="keys"><kbd class="key-enter">Enter</kbd></span> or press the <strong>Send</strong> button to execute the instruction.</p>
+<div class="admonition note">
+<p>This prompt takes noticeably longer than the previous two, since Bob is now writing and editing code rather than reading it.</p>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/85e70172-14ad-48b5-bba2-6838cd25770d/user_cropped_screenshot_3fb014af664148ea8b1f5ad249145807_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/85e70172-14ad-48b5-bba2-6838cd25770d/user_cropped_screenshot_3fb014af664148ea8b1f5ad249145807_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="2">
+<li>
+<p>Bob reports its results under the heading <strong>LGPOLVAL Service — Refactoring Delivery</strong>, beginning with the files it created and the files it modified. The <em>Explorer</em> tab reflects the same outcome: the two new files are marked <strong>U</strong> and the three edited programs are marked <strong>M</strong>, while the footer of the chat reads <strong>5 files changed</strong>.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/0e17f7d1-3201-4347-9105-d782adca8be0/user_cropped_screenshot_0ad15847e4d24cf6b89c7f9e867e1537_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/0e17f7d1-3201-4347-9105-d782adca8be0/user_cropped_screenshot_0ad15847e4d24cf6b89c7f9e867e1537_text_export.jpeg" alt="" width="600"></a>
+</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What happened</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>base/src/lgpolval.cbl</code></td>
+<td>Created. The new validation service, 304 lines</td>
+</tr>
+<tr>
+<td><code>base/src/lgpolval.cpy</code></td>
+<td>Created. The <code>COMMAREA</code> copybook that callers use to communicate with the service, 27 lines</td>
+</tr>
+<tr>
+<td><code>base/src/lgapdb01.cbl</code></td>
+<td>Modified. Gained a <code>WS-VALCA</code> area from the new copybook and a <code>LINK</code> to <code>LGPOLVAL</code> ahead of its policy-type <code>EVALUATE</code></td>
+</tr>
+<tr>
+<td><code>base/src/lgdpdb01.cbl</code></td>
+<td>Modified. Its <code>IF</code>/<code>ELSE</code> guard on the request ID is replaced by the <code>LINK</code>, and the logic the service now owns is removed</td>
+</tr>
+<tr>
+<td><code>base/src/lgupdb01.cbl</code></td>
+<td>Modified. The <code>LINK</code> replaces the inline type-routing block</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>Undo all</strong> and <strong>Show all</strong> controls beside the file count allow you to roll back every change or review them individually. Leave them untouched for now; you will review the changes in <em>Section vii</em>.</p>
+</li>
+</ol>
+<hr>
+<ol start="3">
+<li>
+<p>Scroll to <strong>What Was Extracted Into LGPOLVAL</strong>. This table is central to the report: each row pairs one rule with the program it was extracted from and the check inside the service that now enforces it.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/0956c369-3b81-4670-9574-3fbc87923eae/user_cropped_screenshot_2b5c3c947f364793a67a016711c0542f_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/0956c369-3b81-4670-9574-3fbc87923eae/user_cropped_screenshot_2b5c3c947f364793a67a016711c0542f_text_export.jpeg" alt="" width="600"></a>
+</p>
+<div class="admonition quote">
+<p>The table contains two kinds of rule:</p>
+<ul>
+<li><strong>Rules that were explicitly coded</strong>, such as the request ID prefix check and the policy type checks for add, delete and update. Each existed in a slightly different form in each program (an inline <code>IF</code> in <code>LGDPDB01</code> and an <code>EVALUATE</code> with a <code>WHEN OTHER</code> branch in the other two) and each is now a single check within the service</li>
+<li><strong>Rules that were only implied.</strong> None of the three programs verified that the customer number was non-zero or that a policy number had been supplied; each relied on Db2 to reject the request later. Bob implemented both as explicit checks that run before any Db2 work takes place</li>
+</ul>
+</div>
+<p>Beneath the table, the <strong>LGPOLVAL <code>COMMAREA</code> Interface</strong> documents the contract defined in <code>LGPOLVAL.cpy</code>. A caller supplies an operation code, the request ID and the customer and policy numbers, and receives a result code and a readable reason in return:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Picture</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VCA-OPCODE</code></td>
+<td><code>X(2)</code></td>
+<td>Which operation is being validated: <code>AP</code>, <code>AV</code>, <code>DP</code>, <code>UP</code>, or <code>IP</code></td>
+</tr>
+<tr>
+<td><code>VCA-REQUEST-ID</code></td>
+<td><code>X(6)</code></td>
+<td>Copied from the caller's <code>CA-REQUEST-ID</code></td>
+</tr>
+<tr>
+<td><code>VCA-CUSTOMER-NUM</code></td>
+<td><code>9(10)</code></td>
+<td>Copied from <code>CA-CUSTOMER-NUM</code></td>
+</tr>
+<tr>
+<td><code>VCA-POLICY-NUM</code></td>
+<td><code>9(10)</code></td>
+<td>Copied from <code>CA-POLICY-NUM</code>, zero for an add</td>
+</tr>
+<tr>
+<td><code>VCA-RESULT-CODE</code></td>
+<td><code>9(2)</code></td>
+<td><code>00</code> for pass, <code>10</code> to <code>50</code> for the check that failed</td>
+</tr>
+<tr>
+<td><code>VCA-RESULT-MSG</code></td>
+<td><code>X(40)</code></td>
+<td>A human-readable reason for the result</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<hr>
+<ol start="4">
+<li>
+<p>The report closes with the <strong>Return Code Mapping</strong> and a diagram of the <strong>Architecture After Refactoring</strong>. The mapping is what keeps the change invisible to the programs upstream: each service result code is translated back into the <code>CA-RETURN-CODE</code> value that the caller has always returned, so the screen programs observe no difference.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/244b90b4-9ec2-4225-81a7-b164d6c78eae/user_cropped_screenshot_ac07b7298c42411cadec6b726dded163_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/244b90b4-9ec2-4225-81a7-b164d6c78eae/user_cropped_screenshot_ac07b7298c42411cadec6b726dded163_text_export.jpeg" alt="" width="600"></a>
+</p>
+<table>
+<thead>
+<tr>
+<th>Service result</th>
+<th>Meaning</th>
+<th>Caller returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>00</code></td>
+<td>All checks passed</td>
+<td>Carries on with its Db2 work</td>
+</tr>
+<tr>
+<td><code>10</code></td>
+<td><code>COMMAREA</code> too short</td>
+<td><code>98</code></td>
+</tr>
+<tr>
+<td><code>20</code></td>
+<td>Unrecognised prefix or opcode</td>
+<td><code>99</code></td>
+</tr>
+<tr>
+<td><code>30</code></td>
+<td>Policy type not supported</td>
+<td><code>99</code></td>
+</tr>
+<tr>
+<td><code>40</code></td>
+<td>Customer number is zero</td>
+<td><code>98</code></td>
+</tr>
+<tr>
+<td><code>50</code></td>
+<td>Policy number required but zero</td>
+<td><code>98</code></td>
+</tr>
+</tbody>
+</table>
+<p>The diagram illustrates the refactored chain. Each Db2 program links to <code>LGPOLVAL</code> with its own opcode; on a result of <code>00</code> the caller proceeds, and on any other result it sets <code>CA-RETURN-CODE</code> and returns without touching Db2.</p>
+<p>The explanation beneath the diagram accounts for the one program named in the prompt that was not wired to the service. Bob assigned <code>LGAPVS01</code> an <code>AV</code> opcode in the service but did not add a <code>LINK</code> to it, because <code>LGAPDB01</code> only reaches <code>LGAPVS01</code> after validation has already passed; validating again in the VSAM tier would check the same request twice.</p>
+<div class="admonition warning">
+<p class="admonition-title">RESPONSES MAY VARY</p>
+<p>Bob's delivery will differ from the documented run in its details: the names of the checks, the opcodes and the result code values may not match the screenshots, and Bob may or may not wire the calling programs in this step. Before continuing, confirm that the delivery includes:</p>
+<ul>
+<li><code>lgpolval.cbl</code> and <code>lgpolval.cpy</code> in <code>base/src</code></li>
+<li>Every rule from section iv in the <strong>What Was Extracted</strong> table, each with a corresponding check in the service</li>
+<li>A mapping from each service result code back to a <code>CA-RETURN-CODE</code> value</li>
+<li>An explanation of what was done with <code>LGAPVS01</code>, and why</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">BOB HAS ALREADY STARTED ON THE NEXT SECTION</p>
+<p>The prompt in section vii asks Bob to update the programs to call <code>LGPOLVAL</code> and to add error handling for a failed call. In the documented run, Bob had already wired the three Db2 programs to the service during this step, leaving less for section vii to do than the prompt implies.</p>
+</div>
+</li>
+</ol>
+<hr>
+<h2 id="vii-adding-the-link-code-to-the-main-programs"><strong>vii. Adding the link code to the main programs</strong></h2>
+<p>The service now exists, and the three Db2 programs already call it. This section asks Bob to complete the integration: ensure that every program named in the prompt uses the service in place of its own validation, and add error handling for the case in which the call to the service fails.</p>
+<p>The prompt has three parts, and Bob reviews the current state of the code before acting on any of them:</p>
+<table>
+<thead>
+<tr>
+<th>What the prompt asks</th>
+<th>What Bob does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Update <code>LGDPDB01</code>, <code>LGAPDB01</code>, <code>LGAPVS01</code> and <code>LGUPDB01</code> to call <code>LGPOLVAL</code></td>
+<td>Reads all four programs in their current state, confirms which already link to the service and adds the call to the one that does not (<code>LGAPVS01</code>)</td>
+</tr>
+<tr>
+<td>Replace inline validation with CICS <code>LINK</code> calls</td>
+<td>Identifies checks that remain duplicated in the callers now that the service owns them, and removes them</td>
+</tr>
+<tr>
+<td>Add proper error handling for service failures</td>
+<td>Adds <code>RESP</code> and <code>RESP2</code> to every <code>LINK</code> to the service, and gives the callers a means of reporting that the service itself could not be reached</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<ol>
+<li>
+<p>With <strong>Z Code</strong> mode still active, copy and paste the following prompt into the Agentic Sidebar session window. The delivery report from the previous section should still be visible above the input field.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Update LGDPDB01, LGAPDB01, LGAPVS01 and LGUPDB01 to call LGPOLVAL service. Replace inline validation with CICS LINK calls. Add proper error handling for service failures.
+</code></pre></div>
+<p>Hit <span class="keys"><kbd class="key-enter">Enter</kbd></span> or press the <strong>Send</strong> button.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/bb7c826b-077d-427b-baf5-6490b587e707/user_cropped_screenshot_aa30652834b34dc8a1470793f9a1cd3b_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/bb7c826b-077d-427b-baf5-6490b587e707/user_cropped_screenshot_aa30652834b34dc8a1470793f9a1cd3b_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="2">
+<li>
+<p>Bob begins by reading the four programs in their current state and writing up a <strong>gap analysis</strong>, one program at a time, before it changes a single line.</p>
+<div class="admonition note">
+<p>This is the same plan-first discipline you practiced in <strong>Module 2</strong>: Bob first establishes what has already been done and what remains outstanding.</p>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/c0dcbc15-9392-437a-986c-31c77f414de0/user_cropped_screenshot_539c401f53a6455e8a8616ca19e40351_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/c0dcbc15-9392-437a-986c-31c77f414de0/user_cropped_screenshot_539c401f53a6455e8a8616ca19e40351_text_export.jpeg" alt="" width="600"></a>
+</p>
+<table>
+<thead>
+<tr>
+<th>Program</th>
+<th>What Bob found</th>
+<th>What it decided to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LGDPDB01</code></td>
+<td>The <code>LINK</code> is in place and the former <code>IF</code>/<code>ELSE</code> request ID check has been removed. The <code>EIBCALEN &lt; 28</code> guard remains, which Bob retains as an initial safeguard</td>
+<td>Add <code>RESP</code> handling to the <code>LINK</code></td>
+</tr>
+<tr>
+<td><code>LGAPDB01</code></td>
+<td>The <code>LINK</code> is in place, but the <code>EVALUATE</code> retains a <code>WHEN OTHER</code> branch that duplicates a check the service now performs. The length calculation that <code>INSERT-ENDOW</code> depends on also lacks its starting value</td>
+<td>Remove the duplicate branch, add <code>RESP</code> handling and move the <code>ADD WS-CA-HEADER-LEN</code> statement ahead of the type <code>EVALUATE</code></td>
+</tr>
+<tr>
+<td><code>LGUPDB01</code></td>
+<td>The <code>LINK</code> is in place, and the per-type length checks are already handled upstream</td>
+<td>Add <code>RESP</code> handling to the <code>LINK</code></td>
+</tr>
+<tr>
+<td><code>LGAPVS01</code></td>
+<td>No call to the service yet</td>
+<td>Full integration: a <code>WS-VALCA</code> area and an <code>EIBCALEN</code> guard, the <code>LINK</code> with the <code>AV</code> opcode and a result check before the VSAM write</td>
+</tr>
+</tbody>
+</table>
+<p>At the bottom of the analysis, Bob condenses this into three items of work: <code>RESP</code>/<code>RESP2</code> handling on all three Db2 programs, the length fix in <code>LGAPDB01</code> and the full integration of <code>LGAPVS01</code>.</p>
+</li>
+</ol>
+<hr>
+<ol start="3">
+<li>
+<p>When the edits are complete, Bob reports under <strong>Changes Delivered — LGPOLVAL Integration</strong>, with one table per file and a line number for every change. The footer of the chat now reads <strong>6 files changed</strong> rather than five, since <code>LGAPVS01</code> has been added to the list.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/2235629a-742b-4a95-a17b-5f4271b41cf8/user_cropped_screenshot_0f187cf46b894096bc4c7336ec98bba8_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/2235629a-742b-4a95-a17b-5f4271b41cf8/user_cropped_screenshot_0f187cf46b894096bc4c7336ec98bba8_text_export.jpeg" alt="" width="600"></a>
+</p>
+<p><code>LGDPDB01</code> illustrates the pattern that the other two Db2 programs follow:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Change</th>
+<th>What it is for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>WS-RESP</code> and <code>WS-RESP2</code> added to Working-Storage</td>
+<td>Storage for the response from the <code>LINK</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>INITIALIZE WS-VALCA</code> before the <code>MOVE</code>s</td>
+<td>Starts the service <code>COMMAREA</code> from a clean state on every call</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>RESP(WS-RESP) RESP2(WS-RESP2)</code> on the <code>LINK</code></td>
+<td>Asks CICS to report the outcome of the <code>LINK</code> instead of abending</td>
+</tr>
+<tr>
+<td>4</td>
+<td>A <code>LINK</code> failure check: if <code>WS-RESP</code> is not <code>DFHRESP(NORMAL)</code>, set <code>CA-RETURN-CODE</code> to <code>95</code>, log the condition and return</td>
+<td>The error handling the prompt requested</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Column spacing aligned on the <code>MOVE</code>-to-<code>WS-VALCA</code> statements</td>
+<td>Cosmetic alignment, so that the block matches the surrounding code</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<hr>
+<ol start="4">
+<li>
+<p>Scroll on, and the same five changes appear for <code>LGAPDB01</code> and <code>LGUPDB01</code> at their own line numbers. <code>LGAPDB01</code> receives two additional changes: its result-code check now treats both <code>20</code> (bad opcode) and <code>30</code> (bad type) as return code <code>99</code>, and the <code>ADD WS-CA-HEADER-LEN TO WS-REQUIRED-CA-LEN</code> statement has been moved ahead of the type <code>EVALUATE</code>, where <code>INSERT-ENDOW</code> requires it for its length calculation.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/64976e1f-2a20-4a41-8093-b02f5dec00cc/user_cropped_screenshot_2a8af2f13c8a4c13b852772889cdcaa5_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/64976e1f-2a20-4a41-8093-b02f5dec00cc/user_cropped_screenshot_2a8af2f13c8a4c13b852772889cdcaa5_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="5">
+<li>
+<p>The final table covers <code>LGAPVS01</code>, marked <strong>new integration</strong>. It is the largest change in this step, because the program is being connected to the service for the first time. Beneath it, <strong>Error Code Additions</strong> lists the two return codes introduced in this section.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/1bdaa626-a5e0-41da-bae9-724ec17c21cb/user_cropped_screenshot_030279af36b64b3ab314cb68e3cbe058_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/1bdaa626-a5e0-41da-bae9-724ec17c21cb/user_cropped_screenshot_030279af36b64b3ab314cb68e3cbe058_text_export.jpeg" alt="" width="600"></a>
+</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Change in <code>LGAPVS01</code></th>
+<th>What it is for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>WS-RESP</code> and <code>WS-RESP2</code> initialised to zero</td>
+<td>As in the Db2 programs</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>WS-VALCA</code> group added with <code>COPY LGPOLVAL</code></td>
+<td>The service <code>COMMAREA</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td>An <code>EIBCALEN = 0</code> abend guard, <code>LGCA</code></td>
+<td>The same initial check the Db2 programs perform</td>
+</tr>
+<tr>
+<td>4</td>
+<td>The full <code>LINK</code> block with opcode <code>AV</code> and <code>RESP</code>/<code>RESP2</code> handling</td>
+<td>The call to the service</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>LINK</code> failure sets <code>CA-RETURN-CODE</code> to <code>82</code>, logs it, and returns</td>
+<td>Kept distinct from <code>80</code>, which already denotes a VSAM write failure</td>
+</tr>
+<tr>
+<td>6</td>
+<td>A validation failure returns <code>99</code> for a bad type or opcode and <code>98</code> for anything else</td>
+<td>Maps the service result back to the codes callers already understand</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>New code</th>
+<th>Meaning</th>
+<th>Returned by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>95</code></td>
+<td>The <code>LINK</code> to <code>LGPOLVAL</code> failed, for example because the program is not installed</td>
+<td><code>LGDPDB01</code>, <code>LGAPDB01</code>, <code>LGUPDB01</code></td>
+</tr>
+<tr>
+<td><code>82</code></td>
+<td>The same condition, reported from the VSAM tier</td>
+<td><code>LGAPVS01</code></td>
+</tr>
+</tbody>
+</table>
+<p>Both codes are deliberately distinct from those already in use: <code>80</code> (VSAM write), <code>90</code> (Db2 error), <code>98</code> (short <code>COMMAREA</code>) and <code>99</code> (bad request ID). A caller can therefore distinguish a failure to reach the service from a problem with the data itself.</p>
+</li>
+</ol>
+<hr>
+<ol start="6">
+<li>
+<p>Bob closes with an <strong>Execution Flow After Changes</strong> diagram that follows a single request through a refactored program. The <code>EIBCALEN</code> guards are evaluated first, followed by the <code>LINK</code> to <code>LGPOLVAL</code> and then one of three exits. A bad <code>RESP</code> returns <code>95</code> or <code>82</code>, a failed check returns <code>98</code> or <code>99</code>, and a successful validation proceeds to the Db2 or VSAM work.</p>
+<div class="admonition note">
+<p class="admonition-title">REVIEWING THE CHANGES FILE BY FILE</p>
+<p>To review the changes themselves, locate the bar directly above the chat input. It reads <strong>6 files changed</strong>, with <strong>Undo all</strong> and <strong>Show all</strong> controls on the right. Click <strong>Show all</strong>.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/24313792-2a44-4a1f-8c2e-1a5618e3ccef/user_cropped_screenshot_6bf3f25abb0245309f984cf3e3cd69e7_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/24313792-2a44-4a1f-8c2e-1a5618e3ccef/user_cropped_screenshot_6bf3f25abb0245309f984cf3e3cd69e7_text_export.jpeg" alt="" width="600"></a>
+</p>
+<p>The bar expands into a list of every file Bob modified, showing the number of lines added and removed in each. In the documented run, <code>lgpolval.cbl</code> consists entirely of additions, while <code>lgdpdb01.cbl</code> shows the most removals because it contained the most inline validation. Click a file name to open it.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/c1994fac-bb38-4520-a433-575a0e816167/user_cropped_screenshot_e4d5644da1c94d2099adfb328e05d725_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/c1994fac-bb38-4520-a433-575a0e816167/user_cropped_screenshot_e4d5644da1c94d2099adfb328e05d725_text_export.jpeg" alt="" width="600"></a>
+</p>
+<p>The file opens in a diff view titled <em>Bob Edit of</em>, with every line Bob added highlighted in green. In the case of <code>lgpolval.cbl</code> that is the entire program. Take a moment to review the comment block at the top. It names the four programs the logic was extracted from and the 70-byte <code>COMMAREA</code> defined by <code>LGPOLVAL.cpy</code>, and it documents the five opcodes and the meaning of each result code.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/d75f05e6-8ca0-4a18-9eb8-2d636e334543/user_cropped_screenshot_72cacfa37805439abe66d1b32061f2d3_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-30/d75f05e6-8ca0-4a18-9eb8-2d636e334543/user_cropped_screenshot_72cacfa37805439abe66d1b32061f2d3_text_export.jpeg" alt="" width="600"></a>
+</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">RESPONSES MAY VARY</p>
+<p>The line numbers, the exact return code values and the amount of work already completed in the previous section may not match the screenshots. Before continuing, confirm that:</p>
+<ul>
+<li>All four programs, including <code>LGAPVS01</code>, call <code>LGPOLVAL</code> through a CICS <code>LINK</code> in place of their own validation</li>
+<li>Every <code>LINK</code> carries <code>RESP</code> and <code>RESP2</code>, and a bad response sets a return code and exits cleanly</li>
+<li>The new return codes do not collide with those the programs already used</li>
+<li>The <strong>6 files changed</strong> bar lists the service, its copybook and the four programs</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">COMPILE, DEFINE, AND TEST BEFORE USE</p>
+<p>Everything Bob has done in this module is a source change within your workspace. Before the change could be put to use, <code>LGPOLVAL</code> would need to be compiled and defined to CICS, and the refactored programs recompiled and tested. None of those steps are part of this lab.</p>
+</div>
+</li>
+</ol>
+<hr>
+<h2 id="viii-key-takeaways"><strong>viii. Key takeaways</strong></h2>
+<hr>
+<ul>
+<li>Bob documented the validation rules and mapped their dependencies before any code was changed</li>
+<li>Each rule was traced back to the program and the lines it came from</li>
+<li>The validation logic formerly repeated across the policy programs now resides in a single service, <code>LGPOLVAL</code></li>
+<li>The original programs reach the service through a CICS <code>LINK</code> and handle a failed call themselves</li>
+<li>Every file change was presented as a diff for your approval before it was applied</li>
+<li>Each section produced a report in the chat, so the refactoring is documented as well as implemented</li>
+<li>A refactored program still has to be compiled, deployed and tested before the change is complete</li>
+</ul>
+<p>
+This concludes the hands-on lab. The four reports remain in your chat history and the refactored programs remain in your workspace, so you can return to any section at your convenience.</p>
+<hr>
+<h2 id="ix-earn-accreditation"><strong>ix. Earn accreditation</strong></h2>
+<hr>
+<p>In order to receive credit for completion of this course, you must perform one of the two actions (in accordance with your role) described below:</p>
+<div class="admonition info">
+<p class="admonition-title">IBMers: RECORD A STAND &amp; DELIVER</p>
+<p><strong>IBM regular employees</strong> must record a Stand &amp; Deliver to receive credit for this course. By default, IBMers will be evaluated by their First Line Manager (FLM) — although they may request another manager to evaluate their Stand &amp; Deliver, if appropriate. Instructions on how to submit a Stand &amp; Deliver are included within the activity on <strong>IBM YourLearning</strong>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Business Partners: COMPLETE THE SKILLS EVALUATION QUIZ</p>
+<p>The skills evaluation quiz <strong>only applies to business partners</strong>. The quiz consists of multiple choice questions, with four possible responses (and only one correct answer) for each question. The quiz questions will ask you about on-screen text or descriptions that come up as you work through the lab guide. Participants must pass the quiz with a grade of 80% or higher. Answers to the quiz can only be determined by carefully following the instructions of the hands-on lab. A link is provided within the course page on <strong>IBM Training</strong>.</p>
+</div>
+<hr></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../../build/2-1/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Implementing a new feature in COBOL">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Implementing a new feature in COBOL
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 IBM
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "content.code.annotate", "content.code.copy", "content.code.select", "navigation.footer"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../js/print-site.js"></script>
+      
+        <script src="../../_static/hide-toc-nav.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

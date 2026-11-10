@@ -1,0 +1,1184 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="IBM Bob Premium Package for Z Level 3">
+      
+      
+        <meta name="author" content="Christopher Bienko (cdbienko@us.ibm.com)">
+      
+      
+      
+        <link rel="prev" href="../../analyze/1-1/">
+      
+      
+        <link rel="next" href="../../refactor/3-1/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Implementing a new feature in COBOL - IBM Bob Premium Package for Z Level 3</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../../styles/override-print.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#implementing-a-new-feature-in-cobol" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="IBM Bob Premium Package for Z Level 3" class="md-header__button md-logo" aria-label="IBM Bob Premium Package for Z Level 3" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IBM Bob Premium Package for Z Level 3
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Implementing a new feature in COBOL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="IBM Bob Premium Package for Z Level 3" class="md-nav__button md-logo" aria-label="IBM Bob Premium Package for Z Level 3" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    IBM Bob Premium Package for Z Level 3
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../toc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Table of Contents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registration and setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Registration and setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup-ibmers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For IBM regular employees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup-partners/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For IBM business partners
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Analyze
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Analyze
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../analyze/1-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding the CICS banking sample application
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Build
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Build
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing a new feature in COBOL
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing a new feature in COBOL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#i-from-understanding-to-building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        i. From understanding to building
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ii. Why this matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-planning-the-change-with-z-code-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iii. Planning the change with Z Code mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-implementing-the-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iv. Implementing the plan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-verifying-the-generated-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v. Verifying the generated code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vi-key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vi. Key takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Refactor
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Refactor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../refactor/3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monolithic COBOL refactoring and service integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#i-from-understanding-to-building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        i. From understanding to building
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ii. Why this matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-planning-the-change-with-z-code-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iii. Planning the change with Z Code mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-implementing-the-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iv. Implementing the plan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-verifying-the-generated-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v. Verifying the generated code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vi-key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vi. Key takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<div><p><strong>MODULE 2 | BUILD</strong></p>
+<h1 id="implementing-a-new-feature-in-cobol"><strong>IMPLEMENTING A NEW FEATURE IN COBOL</strong></h1>
+<hr>
+<h2 id="i-from-understanding-to-building"><strong>i. From understanding to building</strong></h2>
+<p></p><div class="video-container"><video style="position:relative;width:100%;height:22.172vw" controls="" alt="type:video"><source src="../_videos/Build%20%5BBob%20PPZ%20L3%5D.mp4" type="video/mp4"></video></div><p></p>
+<div class="admonition note">
+<p>Christopher Bienko <em>(AI Enablement GTM Product Manager)</em> provides an overview of the <em>Build</em> module for the hands-on enablement. <strong><a href="https://ibm.seismic.com/Link/Content/DCq3Qb7R26mb98cDdbmm2WMPMHq3" target="_blank">[3 min]</a></strong></p>
+</div>
+<p>In the previous module you used IBM Bob to understand the CICS Banking Sample Application: what each program does, how the application is layered, and what a single field change would cost you.</p>
+<p>This module puts that understanding to work. You will ask Bob to plan a new feature, review that plan as a human, and then have Bob write the COBOL to deliver it. Today, a bank teller connected to our hypothetical CICS application can only look up a customer by their numeric customer number. In the steps ahead, you will add the ability to search for a customer <strong>by email address</strong>.</p>
+<p>The pattern matters more than the feature itself. <strong>Plan feature changes first before you ultimately implement and build them.</strong> A plan is quick to read and costs little to change or throw away. Generated code that nobody planned costs far more to review and to undo.</p>
+<hr>
+<h2 id="ii-why-this-matters"><strong>ii. Why this matters</strong></h2>
+<p>Adding a feature to a mainframe application is rarely a single-file edit. A new lookup path can touch the BMS screen and the screen driver, a new business service, and the <code>COMMAREA</code> contract between them, and the VSAM record layout itself.</p>
+<div class="admonition note">
+<p>Agentic AI is valuable here because it:</p>
+<ul>
+<li><strong>Grounds the plan in the real codebase</strong> rather than in assumptions about how the application "probably" works</li>
+<li><strong>Surfaces gaps early</strong>, such as a field that the documentation claims exists but the copybook does not declare</li>
+<li><strong>Follows existing conventions</strong> by reusing the patterns already present in neighboring programs</li>
+<li><strong>Keeps a human in the loop</strong>, since every file change is proposed, reviewed and approved before it is implemented</li>
+</ul>
+</div>
+<table>
+<thead>
+<tr>
+<th>TASK</th>
+<th>WITH: Manual Analysis</th>
+<th>WITH: IBM Bob Premium Package for Z</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Design analysis</td>
+<td>Days of tracing programs and copybooks</td>
+<td>Minutes, grounded in the actual source</td>
+</tr>
+<tr>
+<td>Plan documentation</td>
+<td>Often skipped or written after the fact</td>
+<td>Produced first, as a reviewable artifact</td>
+</tr>
+<tr>
+<td>Code generation</td>
+<td>Hand-written, convention drift likely</td>
+<td>Follows the patterns in the existing suite</td>
+</tr>
+<tr>
+<td>Syntax verification</td>
+<td>Compile, read the errors and repeat</td>
+<td>Diagnostics plus a manual cross-check on request</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="iii-planning-the-change-with-z-code-mode"><strong>iii. Planning the change with Z Code mode</strong></h2>
+<hr>
+<ol>
+<li>
+<p>Near the bottom of the Agentic Sidebar, press the <strong>Mode toggle</strong> to expand the list of modes and select <strong>Z Code</strong>.</p>
+<div class="admonition info">
+<p class="admonition-title">WHY Z CODE MODE?</p>
+<p>Z Code mode specializes in detailed analysis, documentation and generation of COBOL programs. Z Architect mode reasons about how the application fits together. Z Code mode works at the level of program structure: paragraphs, copybooks and CICS commands.</p>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-28/57c6df67-f7b4-448a-a39e-83ad04390b67/user_cropped_screenshot_021e1c53dfe84b499c026fd8112ad6b7_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-28/57c6df67-f7b4-448a-a39e-83ad04390b67/user_cropped_screenshot_021e1c53dfe84b499c026fd8112ad6b7_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="2">
+<li>
+<p>Copy and paste the following prompt into the Agentic Sidebar session window:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>What is the plan to implement customer search by email? Create CBSA-plan-email-search.md
+</code></pre></div>
+<p>With the prompt entered, hit <span class="keys"><kbd class="key-enter">Enter</kbd></span> or press the <strong>Send</strong> button to the right of the chat interface.</p>
+<div class="admonition note">
+<p class="admonition-title">ASK FOR A PLAN FIRST</p>
+<p>This prompt asks for a plan only. It does not ask Bob to write the feature. Asking for a plan first gives you a document you can review, correct and share with your team before a single line of COBOL is generated.</p>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-28/edc40dae-0e36-4136-826c-592604aec5ae/user_cropped_screenshot_cf79648b694d425ab61a8ad035b563c4_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-28/edc40dae-0e36-4136-826c-592604aec5ae/user_cropped_screenshot_cf79648b694d425ab61a8ad035b563c4_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="3">
+<li>
+<p>Bob drafts a to-do list covering the workspace exploration, the dependency analysis and the creation of the plan file. Click <strong>Approve todo tools for task</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">APPROVING TOOL REQUESTS</p>
+<p>If auto-approval is turned off, Bob will also ask permission for individual file reads and queries as it works. Click <strong>Approve</strong> for each request as it appears.</p>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-28/2fbf709a-5dfe-49f3-be34-203d598bae24/user_cropped_screenshot_efc1ae108f6648c3953856faf16765bd_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-28/2fbf709a-5dfe-49f3-be34-203d598bae24/user_cropped_screenshot_efc1ae108f6648c3953856faf16765bd_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="4">
+<li>
+<p>When the task completes, Bob summarizes its <strong>key findings from the codebase</strong> and the structure of the plan it produced. Read this summary carefully before opening the file.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-28/7e55ebc6-dc65-4b2f-8523-4666bb8e91f3/user_cropped_screenshot_d54eaaf598414db287ae61eb51276b87_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-28/7e55ebc6-dc65-4b2f-8523-4666bb8e91f3/user_cropped_screenshot_d54eaaf598414db287ae61eb51276b87_text_export.jpeg" alt="" width="600"></a>
+</p>
+<div class="admonition quote">
+<p>Bob makes two key observations:</p>
+<ul>
+<li><strong>A critical gap</strong>: the architecture ER diagram describes an email field on the customer record, but <code>CUSTOMER.cpy</code> does not declare it. No email variable exists anywhere in the codebase, so adding that field is the prerequisite for everything else.</li>
+<li><strong>A VSAM constraint</strong>: the <code>CUSTOMER</code> file is a KSDS keyed only on sort code and customer number. With no alternate index on email, the search must be a full sequential browse using the same <code>STARTBR</code> / <code>READNEXT</code> / <code>ENDBR</code> pattern already used elsewhere in the suite.</li>
+</ul>
+<p>Bob also makes an explicit <strong>design decision</strong>: create a new service rather than extend the existing <code>INQCUST</code> program, so that the five existing callers of <code>INQCUST</code> are not broken.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">THIS IS THE REVIEW STEP</p>
+<p>A plan that contradicts what you know about your system is useful: the disagreement surfaced before any code was written. Read the design decision, the scope and the risks sections. If you disagree, say so in a follow-up prompt before any code is generated.</p>
+</div>
+</li>
+</ol>
+<hr>
+<h2 id="iv-implementing-the-plan"><strong>iv. Implementing the plan</strong></h2>
+<hr>
+<ol>
+<li>
+<p>Open <code>CBSA-plan-email-search.md</code> from the <em>Explorer</em> tab and review the full document. It holds the executive summary, a current-state analysis with a diagram of how customer lookup works today, the key programs table and the email field gap.</p>
+<div class="admonition note">
+<p class="admonition-title">THE FILE LOCATION MAY DIFFER</p>
+<p>The workspace rules you created during setup send Bob's documents to the <code>docs/</code> folder. Bob may therefore have filed the plan there instead of at the workspace root. Follow the link in Bob's response.</p>
+</div>
+<p>With the plan reviewed, <strong>send a follow-up prompt</strong> asking Bob to begin implementing it. For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>According to the implementation plan, update the CUSTOMER data structures
+</code></pre></div>
+<ul>
+<li>After copy and pasting the instruction above, hit <span class="keys"><kbd class="key-enter">Enter</kbd></span> to execute the request.</li>
+<li>Bob requests permission to use its COBOL code-generation skill.</li>
+<li>Click <strong>Approve once</strong> to authorize it for this step, or <strong>Approve skill tools for task</strong> to authorize it for the remainder of the task.</li>
+</ul>
+<details class="info">
+<summary>OPTIONAL: REFERENCING THE PLAN FILE DIRECTLY</summary>
+<p>You can point Bob at the plan explicitly using the <code>@</code> symbol in the chat bar, which inserts the correct path without you having to copy it manually:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Use the @CBSA-plan-email-search.md file to implement the change
+</code></pre></div>
+<p>Alternatively, right-click the file in the <em>Explorer</em> panel and select <strong>Copy Path</strong>, then paste the path into your prompt.</p>
+</details>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-28/c8da1c3a-c726-4bbf-9869-741f7850f628/user_cropped_screenshot_80ec5ccd0fae418d935bc6ce978a2728_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-28/c8da1c3a-c726-4bbf-9869-741f7850f628/user_cropped_screenshot_80ec5ccd0fae418d935bc6ce978a2728_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="2">
+<li>
+<p>Work through the plan step by step, approving each request as it appears. If auto-approve is turned off, Bob will prompt you before each individual change.</p>
+<p>As Bob applies the changes, the editor shows each modification as a diff: <strong>green lines</strong> indicate additions or new content, and <strong>red lines</strong> indicate removals or replaced content. The chat footer tracks how many files have changed, with <strong>Show all</strong> and <strong>Undo all</strong> controls available at any time.</p>
+</li>
+</ol>
+<hr>
+<ol start="3">
+<li>
+<p>When the implementation completes, Bob summarizes the program it built. In this example it created <code>cobol_src/INQEMAIL.cbl</code>, named after the existing <code>INQCUST</code> convention and using the newly created <code>SRCHEML.cpy</code> copybook as its <code>COMMAREA</code> contract.</p>
+<div class="admonition quote">
+<p>The <strong>section structure</strong> table shows that Bob followed the conventions of the surrounding suite rather than inventing its own:</p>
+<ul>
+<li>An entry-point section that validates the email is not blank</li>
+<li>A browse section implementing the <code>STARTBR</code> / <code>READNEXT</code> loop with retry handling</li>
+<li>A close-browse section called from every exit path</li>
+<li>A populate-<code>COMMAREA</code> section</li>
+<li>A CICS abend-handling section</li>
+</ul>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-28/45eb2ef0-d431-48b6-b0f5-1dff41c0c2a8/user_cropped_screenshot_13635544f1ac4c88bafd337122a41255_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-28/45eb2ef0-d431-48b6-b0f5-1dff41c0c2a8/user_cropped_screenshot_13635544f1ac4c88bafd337122a41255_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<h2 id="v-verifying-the-generated-code"><strong>v. Verifying the generated code</strong></h2>
+<p>Generated code is a starting point. Bob can check its own work. In addition to your own review and checks, consider making a habit of asking Bob to review its own work, too, before treating the code as a deliverable.</p>
+<hr>
+<ol>
+<li>
+<p>Within the Agentic Sidebar chat, copy and paste the following prompt:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Verify the syntax of the INQEMAIL.cbl program
+</code></pre></div>
+<p>Hit <span class="keys"><kbd class="key-enter">Enter</kbd></span> or press the <strong>Send</strong> button to execute the instruction.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-28/0cafa2b4-bca1-4e07-9499-ca77a386415d/user_cropped_screenshot_a2763fa111bd48ecb27127a6ea49bf69_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-28/0cafa2b4-bca1-4e07-9499-ca77a386415d/user_cropped_screenshot_a2763fa111bd48ecb27127a6ea49bf69_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="2">
+<li>
+<p>Bob runs its diagnostic tooling and reports the results, then performs a manual cross-check of the artifacts it created.</p>
+<div class="admonition quote">
+<p>Three details in this output deserve attention:</p>
+<ul>
+<li><strong>The remaining warning is explained.</strong> Bob flags an unused-variable warning on the abend-handling section and assesses it as an expected false positive. That section is the target of a CICS <code>HANDLE ABEND</code>, so the CICS runtime activates it instead of a COBOL <code>PERFORM</code>. The same pattern appears in every program in the suite.</li>
+<li><strong>The cross-check is field by field.</strong> Bob confirms every field in the new <code>COMMAREA</code> copybook and in the updated customer record layout is correctly referenced, and verifies its CICS API usage against the existing <code>INQCUST.cbl</code> as a reference implementation.</li>
+<li><strong>A real defect was found and fixed.</strong> During the review Bob identified a string-continuation operator that is not valid IBM Enterprise COBOL syntax and corrected it.</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">CLEAN DIAGNOSTICS ARE ONLY THE FIRST CHECK</p>
+<p>Clean diagnostics mean the program is syntactically sound and internally consistent. They <em>do not</em> guarantee that the feature behaves correctly. This requires further validation from a human-in-the-loop (you).</p>
+<p>The plan's testing section lists functional test cases, including edge cases, that still need to be executed against a running region before this change could be considered complete.</p>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-28/c36d62a7-13a6-4c8a-b6ce-deea4bdd7c0a/user_cropped_screenshot_479632dda0c24c4e8890ab3685e3f53b_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-28/c36d62a7-13a6-4c8a-b6ce-deea4bdd7c0a/user_cropped_screenshot_479632dda0c24c4e8890ab3685e3f53b_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<h2 id="vi-key-takeaways"><strong>vi. Key takeaways</strong></h2>
+<hr>
+<ul>
+<li>Asking for a plan before asking for code produces a reviewable artifact and a better result</li>
+<li>Bob grounds its plan in the real codebase, surfacing gaps that documentation alone would hide</li>
+<li>Design decisions are made explicit, such as creating a new service rather than breaking existing callers</li>
+<li>Generated COBOL follows the conventions already present in the surrounding programs</li>
+<li>Every file change is proposed as a reviewable diff and requires your approval before it is committed</li>
+<li>Asking Bob to verify its own work catches real defects and explains the warnings it chooses to leave in place</li>
+<li>Syntax verification is a checkpoint on the way to functional testing, which is still required</li>
+</ul>
+<p></p>
+<p>The next module moves from one program to a whole chain of them. Working on a second CICS application, GenApp, you will have Bob find the validation rules that are duplicated across its policy programs and consolidate them into a single shared service. Continue to <strong><a href="../../refactor/3-1/" target="_blank">Module 3 | Monolithic COBOL refactoring and service integration</a></strong>.</p>
+<hr></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../../analyze/1-1/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Understanding the CICS banking sample application">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Understanding the CICS banking sample application
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../refactor/3-1/" class="md-footer__link md-footer__link--next" aria-label="Next: Monolithic COBOL refactoring and service integration">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Monolithic COBOL refactoring and service integration
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 IBM
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "content.code.annotate", "content.code.copy", "content.code.select", "navigation.footer"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../js/print-site.js"></script>
+      
+        <script src="../../_static/hide-toc-nav.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
