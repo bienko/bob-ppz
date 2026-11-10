@@ -1,0 +1,1379 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="IBM Bob Premium Package for Z Level 3">
+      
+      
+        <meta name="author" content="Christopher Bienko (cdbienko@us.ibm.com)">
+      
+      
+      
+        <link rel="prev" href="../../setup-partners/">
+      
+      
+        <link rel="next" href="../../build/2-1/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Understanding the CICS banking sample application - IBM Bob Premium Package for Z Level 3</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/print-site.css">
+    
+      <link rel="stylesheet" href="../../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../../styles/override-print.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#understanding-the-cics-banking-sample-application" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="IBM Bob Premium Package for Z Level 3" class="md-header__button md-logo" aria-label="IBM Bob Premium Package for Z Level 3" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IBM Bob Premium Package for Z Level 3
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Understanding the CICS banking sample application
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="IBM Bob Premium Package for Z Level 3" class="md-nav__button md-logo" aria-label="IBM Bob Premium Package for Z Level 3" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    IBM Bob Premium Package for Z Level 3
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../toc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Table of Contents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Registration and setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Registration and setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup-ibmers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For IBM regular employees
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup-partners/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For IBM business partners
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Analyze
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Analyze
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding the CICS banking sample application
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Understanding the CICS banking sample application
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#i-understanding-the-codebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        i. Understanding the codebase
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ii. Why this matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-explaining-a-program-with-bob-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iii. Explaining a program with Bob Workflows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-documenting-the-cbsa-architecture-with-z-architect-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iv. Documenting the CBSA architecture with Z Architect mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-analyzing-the-impact-of-a-field-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v. Analyzing the impact of a field change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vi-key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vi. Key takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Build
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Build
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../build/2-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing a new feature in COBOL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6">
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Refactor
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Refactor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../refactor/3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monolithic COBOL refactoring and service integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#i-understanding-the-codebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        i. Understanding the codebase
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ii. Why this matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-explaining-a-program-with-bob-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iii. Explaining a program with Bob Workflows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-documenting-the-cbsa-architecture-with-z-architect-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iv. Documenting the CBSA architecture with Z Architect mode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-analyzing-the-impact-of-a-field-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v. Analyzing the impact of a field change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vi-key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vi. Key takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<div><p><strong>MODULE 1 | ANALYZE</strong></p>
+<h1 id="understanding-the-cics-banking-sample-application"><strong>UNDERSTANDING THE CICS BANKING SAMPLE APPLICATION</strong></h1>
+<hr>
+<h2 id="i-understanding-the-codebase"><strong>i. Understanding the codebase</strong></h2>
+<p></p><div class="video-container"><video style="position:relative;width:100%;height:22.172vw" controls="" alt="type:video"><source src="../_videos/Analyze%20%5BBob%20PPZ%20L3%5D.mp4" type="video/mp4"></video></div><p></p>
+<div class="admonition note">
+<p>Christopher Bienko <em>(AI Enablement GTM Product Manager)</em> provides an overview of the <em>Analyze</em> module for the hands-on enablement. <strong><a href="https://ibm.seismic.com/Link/Content/DCHH2XmBRfmFC8cVcPdTcjGCMVXj" target="_blank">[3 min]</a></strong></p>
+</div>
+<p>Before any modernization or maintenance effort can begin, engineers must first understand how a legacy application behaves. Much like Literate Coding allows developers to express change through natural language, Agentic AI enables developers to explore and understand unfamiliar codebases using conversational prompts.</p>
+<p>Tracing programs, copybooks, BMS maps and data stores by hand means reading across thousands of lines of COBOL. IBM Bob can analyze the same codebase in minutes and produce program documentation, architecture diagrams and change impact assessments from it.</p>
+<p>The effect is similar to working alongside a senior mainframe engineer: someone who can explain decades of accumulated business logic and say what breaks before you change it.</p>
+<p>In this module you will work with the <strong>CICS Banking Sample Application (CBSA)</strong>, an enterprise-grade z/OS reference application. It simulates core retail banking operations: customer onboarding and account management, together with deposits, withdrawals and fund transfers.</p>
+<hr>
+<h2 id="ii-why-this-matters"><strong>ii. Why this matters</strong></h2>
+<p>A deep understanding of the existing application reduces migration risk and improves modernization outcomes. </p>
+<div class="admonition note">
+<p>Legacy-system analysis is particularly valuable when working with:</p>
+<ul>
+<li><strong>Large COBOL applications</strong> containing decades of business logic</li>
+<li><strong>Poorly documented systems</strong> where original developers are unavailable</li>
+<li><strong>Shared copybooks and BMS (Basic Mapping Support) maps</strong> where a single field change can ripple across many artifacts</li>
+<li><strong>Interdependent programs</strong> spread across presentation, business logic and data tiers</li>
+<li><strong>Modernization initiatives</strong> targeting Java, Python or cloud-native platforms</li>
+</ul>
+</div>
+<table>
+<thead>
+<tr>
+<th>TASK</th>
+<th>WITH: Manual Analysis</th>
+<th>WITH: IBM Bob Premium Package for Z</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Program documentation</td>
+<td>1–2 days of analysis and writing</td>
+<td>Minutes of generation</td>
+</tr>
+<tr>
+<td>Architecture diagrams</td>
+<td>2–3 days of manual creation</td>
+<td>Minutes of automatic generation</td>
+</tr>
+<tr>
+<td>Impact analysis</td>
+<td>Manual cross-referencing of every copybook and program</td>
+<td>Automatic, traceable blast-radius report</td>
+</tr>
+<tr>
+<td>Updates</td>
+<td>Difficult to maintain</td>
+<td>Instant regeneration</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="iii-explaining-a-program-with-bob-workflows"><strong>iii. Explaining a program with Bob Workflows</strong></h2>
+<p>Begin with the built-in <strong>Explain code</strong> workflow to generate business-focused documentation for <code>BANKDATA</code>, the batch program that initializes CBSA's application data.</p>
+<hr>
+<ol>
+<li>
+<p>Click the <strong>Explorer</strong> tab along the left edge of the Bob IDE.</p>
+<ul>
+<li>The <code>Bob PPZ L3</code> workspace from the <em>Registration and setup</em> chapter should already be open inside the <em>Explorer</em> tab.</li>
+<li>Its <code>src/base/</code> folder (or <code>CBSA/src/base/</code>) holds <code>bms_src</code>, <code>cobol_copy</code>, and <code>cobol_src</code>.</li>
+</ul>
+<details class="warning">
+<summary>CAN'T LOCATE THE DIRECTORY?</summary>
+<p>If this is not the case:</p>
+<ul>
+<li>Click <strong>Open Folder</strong> to expose the <em>File Explorer</em> view</li>
+<li>Drill down into the <code>Bob PPZ L3</code> folder and click <strong>Open</strong></li>
+</ul>
+</details>
+<div class="admonition note">
+<p class="admonition-title">ABOUT THE SCREENSHOTS IN THIS MODULE</p>
+<p>The screenshots were captured in a workspace folder named <code>ppz-demo</code>, with the three source folders sitting at its root. Your workspace is named <code>Bob PPZ L3</code> and holds the same three folders under <code>src/base/</code>. The steps are otherwise identical.</p>
+</div>
+</li>
+</ol>
+<hr>
+<ol start="2">
+<li>
+<p>Near the top-right of the IBM Bob sidebar, click the <strong>Bob workflows</strong> button (the play icon) to open the workflow catalog. If a workspace picker appears first, select <strong>Run Workflow in Bob PPZ L3</strong>.</p>
+<div class="admonition info">
+<p class="admonition-title">WHAT ARE BOB WORKFLOWS?</p>
+<p>Workflows guide you through complex tasks step by step using built-in AI prompts. Instead of writing a prompt from scratch, you answer a few guided questions and Bob runs a multi-step analysis on your behalf.</p>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/ce8225bf-ca13-4301-a36e-f9b78b1104f4/user_cropped_screenshot_02cef56de11140f5a4619667b649d80a_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/ce8225bf-ca13-4301-a36e-f9b78b1104f4/user_cropped_screenshot_02cef56de11140f5a4619667b649d80a_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="3">
+<li>
+<p>From the list of available workflows, locate <strong>Explain code</strong> and click <strong>Start</strong>.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/fd7084a3-9c64-4efc-a429-3e1486c4dfe3/user_cropped_screenshot_80b90f2d436f42eda7bbd800570fa1c3_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/fd7084a3-9c64-4efc-a429-3e1486c4dfe3/user_cropped_screenshot_80b90f2d436f42eda7bbd800570fa1c3_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="4">
+<li>
+<p>The <em>Explain code</em> workflow produces an explanation of the selected program. It analyzes the code with its copybook references and identifies the program logic, business rules and data usage.</p>
+<p>Under <strong>Program selection</strong>, click <strong>Browse files</strong>.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/8a3f624d-0b2d-446f-81b0-4f38123d4a12/user_cropped_screenshot_59ca31c87e3d4e4a9130150fce972643_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/8a3f624d-0b2d-446f-81b0-4f38123d4a12/user_cropped_screenshot_59ca31c87e3d4e4a9130150fce972643_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="5">
+<li>
+<p>In the file picker, navigate to <code>src</code> › <code>base</code> › <code>cobol_src</code> and select <strong>BANKDATA.cbl</strong>.</p>
+<p>Click <strong>Select File</strong>.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/03b41aec-b804-4a16-b4b8-1930a59b86aa/user_cropped_screenshot_d078d82790304cabb8c3587a1030a641_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/03b41aec-b804-4a16-b4b8-1930a59b86aa/user_cropped_screenshot_d078d82790304cabb8c3587a1030a641_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="6">
+<li>
+<p>Confirm that <code>BANKDATA.cbl</code> appears as the selected file, then click <strong>Continue with selection</strong>.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/d8aebfd6-dac2-4d75-83f9-d9d76bd6738d/user_cropped_screenshot_bdb24d1bde8d4f9a963a6dbffb61f10a_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/d8aebfd6-dac2-4d75-83f9-d9d76bd6738d/user_cropped_screenshot_bdb24d1bde8d4f9a963a6dbffb61f10a_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="7">
+<li>
+<p>Bob will ask which perspective the explanation should be written for.</p>
+<p>Select <strong>Business</strong> and click <strong>Confirm</strong>.</p>
+<div class="admonition info">
+<p class="admonition-title">EXPLANATION PERSPECTIVES</p>
+<p>The workflow offers three perspectives: <strong>Architect</strong>, <strong>Developer</strong> and <strong>Business</strong>. Each perspective produces a separate file with content tailored to that job role. You may re-run the workflow later to compare all three.</p>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/80a45e26-3ce6-4ad9-b60d-22c2f47b4d9b/user_cropped_screenshot_3ef7a8219116436ea5ec45ce6036036d_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/80a45e26-3ce6-4ad9-b60d-22c2f47b4d9b/user_cropped_screenshot_3ef7a8219116436ea5ec45ce6036036d_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="8">
+<li>
+<p>Bob extracts the program's variables and generates the explanation.</p>
+<ul>
+<li>When the workflow finishes, the <strong>Workflow results</strong> section shows where the explanation was saved.</li>
+<li><strong>Click</strong> the <code>docs/explain/business_BANKDATA.md</code> link to open it.</li>
+</ul>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/37bf283e-b0f3-468e-bc67-0f80b8eb5cdf/user_cropped_screenshot_3dc33d01d3f24926acac0de3b2586434_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/37bf283e-b0f3-468e-bc67-0f80b8eb5cdf/user_cropped_screenshot_3dc33d01d3f24926acac0de3b2586434_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="9">
+<li>
+<p>Review the generated <strong>Business Summary &amp; Analysis</strong>.</p>
+<p>Bob describes <code>BANKDATA</code> in business terms:</p>
+<ul>
+<li>Its primary function: a batch data generation utility</li>
+<li>The runtime parameters it accepts: <code>START-KEY</code>, <code>END-KEY</code>, <code>STEP-KEY</code> and <code>RANDOM-SEED</code></li>
+<li>The business rules it enforces, such as credit score assignment, account portfolio creation across product types and control record tracking for downstream reconciliation</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">TRY IT WITH A PROMPT INSTEAD</p>
+<p>You can achieve a similar result without the workflow by typing <code>/explain @src/base/cobol_src/BANKDATA.cbl</code> in the chat. Bob will adapt the explanation to the currently active mode. With this approach Bob may not save the explanation automatically, so you may need to follow up with a prompt such as <code>save the BANKDATA explanation</code>.</p>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/8ae24029-d455-442b-b13b-f10403984302/user_cropped_screenshot_e0df846498f14d22a2abd850987294c1_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/8ae24029-d455-442b-b13b-f10403984302/user_cropped_screenshot_e0df846498f14d22a2abd850987294c1_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<h2 id="iv-documenting-the-cbsa-architecture-with-z-architect-mode"><strong>iv. Documenting the CBSA architecture with Z Architect mode</strong></h2>
+<p>The program explanation covers a single program in depth. Next you will have Bob document the architecture of the entire application: its programs, databases and major dependencies.</p>
+<hr>
+<ol>
+<li>
+<p>Near the bottom of the Agentic Sidebar, press the <strong>Mode toggle</strong> to expand the list of modes and select <strong>Z Architect</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">SWITCHING BETWEEN DIFFERENT AGENTIC MODES</p>
+<p>The label assigned to the <strong>Mode toggle</strong> button will change to reflect the name of the mode that the Agentic Sidebar currently has active. For example, if in the <em>Agent</em> mode, the toggle button will read as <em>Agent</em>. For the sake of clarity, when instructing you to change the Agentic Mode type, this documentation will refer to this toggle button as the <strong>Mode toggle</strong>.</p>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/4a0ffb90-3b54-4998-90d1-0992bcd3e6b8/user_cropped_screenshot_2be7c94c9edf4e368cdce86473e94d6f_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/4a0ffb90-3b54-4998-90d1-0992bcd3e6b8/user_cropped_screenshot_2be7c94c9edf4e368cdce86473e94d6f_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="2">
+<li>
+<p>With <strong>Z Architect</strong> mode active, copy and paste the following prompt into the Agentic Sidebar session window:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Visually document the CBSA architecture in a .md file representing programs, databases, and major dependencies.
+</code></pre></div>
+<p>With the prompt entered, hit <span class="keys"><kbd class="key-enter">Enter</kbd></span> or press the <strong>Send</strong> button to the right of the chat interface.</p>
+<div class="admonition info">
+<p class="admonition-title">WHY Z ARCHITECT MODE?</p>
+<p>Z Architect mode specializes in creating architecture diagrams and analyzing application flows, which suits it to mapping inter-program relationships and producing structured documentation.</p>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/cc52e4aa-e36d-40c8-a98b-c0339ddac778/user_cropped_screenshot_25058443fa9148d4afea1e78ffe9403e_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/cc52e4aa-e36d-40c8-a98b-c0339ddac778/user_cropped_screenshot_25058443fa9148d4afea1e78ffe9403e_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="3">
+<li>
+<p>Bob drafts a to-do list for the task: exploring the workspace, analyzing program dependencies and database access, and generating the documentation.</p>
+<p>Click <strong>Approve todo tools for task</strong> so Bob can update its progress without asking again.</p>
+<div class="admonition note">
+<p class="admonition-title">APPROVING TOOL REQUESTS</p>
+<p>Depending on your permission settings, Bob may also ask you to approve individual file reads or other tool calls as it works. Click <strong>Approve</strong> for each request as it appears.</p>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/d9d5cb29-e1e5-4ba0-bdc3-063d8185332c/user_cropped_screenshot_68d74d3d7f5649eca11cd258e79b3a25_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/d9d5cb29-e1e5-4ba0-bdc3-063d8185332c/user_cropped_screenshot_68d74d3d7f5649eca11cd258e79b3a25_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="4">
+<li>
+<p>When all tasks are completed, Bob summarizes the highlights covered in the documentation, including:</p>
+<div class="admonition quote">
+<ul>
+<li><strong>System tiers</strong>: 29 COBOL programs split across presentation drivers, business logic services, an asynchronous credit bureau simulation and utilities</li>
+<li><strong>Persistence architecture</strong>: VSAM KSDS files (<code>CUSTOMER</code> and <code>ABNDFILE</code>) and Db2 tables (<code>ACCOUNT</code>, <code>PROCTRAN</code> and <code>CONTROL</code>)</li>
+<li><strong>End-to-end sequence flows</strong> such as customer onboarding, account creation and funds transfer</li>
+<li><strong>A copybook dependency matrix</strong> mapping the shared copybooks to the programs that use them</li>
+</ul>
+</div>
+<p>Click the <code>docs/cbsa_architecture.md</code> link at the bottom of the response to open the full document.</p>
+<div class="admonition warning">
+<p class="admonition-title">THE FILE NAME MAY DIFFER</p>
+<p>The workspace rules you created during setup tell Bob where to file its documents and how to name them. Bob may therefore save this document under a name that follows the <code>[PREFIX]-[TYPE]-[description].md</code> convention rather than the name shown in the screenshot. Follow the link in Bob's response.</p>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/371a8a78-9062-4b40-9372-dd94c445b7e9/user_cropped_screenshot_231a997d00d5401c9f9d4e8ecf5966cc_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/371a8a78-9062-4b40-9372-dd94c445b7e9/user_cropped_screenshot_231a997d00d5401c9f9d4e8ecf5966cc_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="5">
+<li>
+<p>The <strong>Executive Summary &amp; System Overview</strong> describes CBSA as a CICS application built on IBM CICS Transaction Server for z/OS, Db2 for z/OS and VSAM. It notes the clear separation between the presentation, business service and data layers.</p>
+<p>Scroll down to the <strong>High-Level Layered Architecture</strong> diagram to see how <code>BNKMENU</code> routes users to each screen driver.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/d3461b1e-7484-41ea-a088-bffca657f1bd/user_cropped_screenshot_ec5d24d9010d47c38e3db495112fb4f5_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/d3461b1e-7484-41ea-a088-bffca657f1bd/user_cropped_screenshot_ec5d24d9010d47c38e3db495112fb4f5_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="6">
+<li>
+<p>Continue scrolling to the <strong>Detailed Program Architecture &amp; Catalog</strong>. Bob lists four things for every program: its transaction ID, its BMS mapset, its source file and the business services it calls. The result is a complete and navigable inventory of the application.</p>
+<details class="info">
+<summary><em>OPTIONAL</em>: GO FURTHER WITH ARCHITECTURE PROMPTS</summary>
+<p>If you have token budget to spare, try these variations in Z Architect mode and compare the results:</p>
+<ul>
+<li><code>Build an architecture diagram (in draw.io) illustrating the program dependencies of the CBSA application.</code></li>
+<li><code>Create documentation with comprehensive call graphs of all programs in the workspace, organized by functional topics.</code></li>
+</ul>
+<p>Draw.io output produces an editable diagram that you can refine with follow-up prompts. One example is asking Bob to color-code the <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code> and <code>DELETE</code> access on each table.</p>
+</details>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/d0bb281e-c4ab-4a5e-9374-a378959820c3/user_cropped_screenshot_74835407c63e4269bf87b603af6d16b3_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/d0bb281e-c4ab-4a5e-9374-a378959820c3/user_cropped_screenshot_74835407c63e4269bf87b603af6d16b3_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<h2 id="v-analyzing-the-impact-of-a-field-change"><strong>v. Analyzing the impact of a field change</strong></h2>
+<p>A common maintenance question on the mainframe sounds simple: <em>"What happens if I change this field?"</em> A single copybook field can be shared by BMS maps, programs and runtime resources. In this section, Bob traces the full blast radius of shrinking one field before any code is touched.</p>
+<hr>
+<ol>
+<li>
+<p>In the <em>Explorer</em> tab, expand the <code>cobol_copy</code> folder and open <strong>BANKMAP.cpy</strong>.</p>
+<p>Locate <strong>Line 14</strong>, which defines the company name input field:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c">02  CO</span><span class="nv">MPANYI</span><span class="w">  </span><span class="kt">PIC X(40)</span><span class="p">.</span>
+</code></pre></div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/dc410889-5da0-4824-84f3-2d63d6a91326/user_cropped_screenshot_8662726a242c489990082bd64d00a58b_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/dc410889-5da0-4824-84f3-2d63d6a91326/user_cropped_screenshot_8662726a242c489990082bd64d00a58b_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="2">
+<li>
+<p>Highlight the entire line, then right-click and select <strong>IBM Bob</strong> › <strong>Add to Context</strong> to add the field to your active chat session.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/d1ce7738-4303-457e-8b83-a7c863e929d9/user_cropped_screenshot_104f102158aa4f7d99c23da32b47f580_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/d1ce7738-4303-457e-8b83-a7c863e929d9/user_cropped_screenshot_104f102158aa4f7d99c23da32b47f580_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="3">
+<li>
+<p>In the chat window, confirm the field has been added as context. It will appear as a tag reading <code>BANKMAP.cpy:14</code>.</p>
+<p>Before sending any instructions, press the <strong>Mode toggle</strong> and make sure <strong>Z Architect</strong> is selected.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/64495f36-e290-4ac5-bf2b-a44809b35e76/user_cropped_screenshot_2ee8b10ce7e54ed885be76378c2e8464_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/64495f36-e290-4ac5-bf2b-a44809b35e76/user_cropped_screenshot_2ee8b10ce7e54ed885be76378c2e8464_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="4">
+<li>
+<p>Within the Agentic Sidebar chat, type or paste the following prompt:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>What would be the impact of changing this field to 10? Generate Impact-Analysis.md
+</code></pre></div>
+<p>Then hit <span class="keys"><kbd class="key-enter">Enter</kbd></span> or press the <strong>Send</strong> button to execute the instruction.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/316b6c75-ae47-45c6-917c-aba38684e105/user_cropped_screenshot_e40f35702e2c4f4e93dca2b0ee444efa_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/316b6c75-ae47-45c6-917c-aba38684e105/user_cropped_screenshot_e40f35702e2c4f4e93dca2b0ee444efa_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="5">
+<li>
+<p>Bob recognizes the request and loads its <strong>impact-analysis</strong> skill. It then drafts a to-do list: read the copybook, identify every program that uses it, perform the dependency analysis and ask clarifying questions. Click <strong>Approve todo tools for task</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">APPROVING TOOL REQUESTS</p>
+<p>You may be asked to approve roughly 4–5 additional tool requests in sequence: skill requests, individual file reads and query requests. Click <strong>Approve</strong> for each one as it appears. Each approval allows Bob to complete the next step in tracing which artifacts reference <code>COMPANYI</code>.</p>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/c74ae58e-adb3-4f49-901a-4e0b955c6515/user_cropped_screenshot_458ee56b0eed46dcb985817064dffdd8_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/c74ae58e-adb3-4f49-901a-4e0b955c6515/user_cropped_screenshot_458ee56b0eed46dcb985817064dffdd8_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="6">
+<li>
+<p>Before writing the report, Bob asks clarifying questions. For example, it may notice that the BMS source defines the field with a different length than the copybook, or that <code>BANKMAP.cpy</code> is referenced under a different member name.</p>
+<p>When prompted, select the option stating that the <strong>change is hypothetical/for analysis purposes</strong> and that Bob should <strong>document the full blast radius</strong>: the BMS source, the COBOL copybook and all downstream effects.</p>
+<div class="admonition warning">
+<p class="admonition-title">RESPONSES MAY VARY</p>
+<p>Bob's questions are generated from its analysis, so the exact wording and number of questions may differ from the screenshot. Choose the option closest to a hypothetical, full blast-radius analysis. If Bob asks whether to include a Z Understand analysis, select the option to <strong>continue with the local analysis results only</strong>. Skip this step if you are not asked.</p>
+</div>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/212efb34-6c54-4f01-8006-bb6a2166df2d/user_cropped_screenshot_ef35efe8eea948c49de963bbeea5bebd_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/212efb34-6c54-4f01-8006-bb6a2166df2d/user_cropped_screenshot_ef35efe8eea948c49de963bbeea5bebd_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="7">
+<li>
+<p>When all tasks are completed, Bob saves the report to a date-stamped folder under <code>bobz/impact-analysis/</code> and summarizes its <strong>Key Findings</strong> in the chat:</p>
+<div class="admonition quote">
+<ul>
+<li>
+<p><strong>What must change</strong>: four artifacts</p>
+<ul>
+<li>Both the input (<code>COMPANYI</code>) and output (<code>COMPANYO</code>) fields in <code>BANKMAP.cpy</code></li>
+<li>The <code>DFHMDF LENGTH</code> in <code>bms_src/BNK1MAI.bms</code></li>
+<li>The physical BMS map load module, reassembled and refreshed with <code>CICS NEWCOPY</code></li>
+<li><code>BNKMENU.cbl</code>, recompiled and relinked</li>
+</ul>
+</li>
+<li>
+<p><strong>Most critical risk</strong>: if the copybook changes but the BMS source is not reassembled, the physical and symbolic maps fall out of sync by 30 bytes. Every subsequent field would be read or written at the wrong offset, causing silent data corruption or an ASRA abend</p>
+</li>
+<li>
+<p><strong>Inevitable business impact</strong>: the company name literal displayed on the main menu would be silently truncated, making the application title unrecognizable to users</p>
+</li>
+</ul>
+</div>
+<p>Click the <strong>report link</strong> in the response to open <code>IMPACT-ANALYSIS.md</code>.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/1772e1d9-a262-4098-92e1-a990e4e9c866/user_cropped_screenshot_c23b38e7e3ca4061862dd8be1ae0d0b0_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/1772e1d9-a262-4098-92e1-a990e4e9c866/user_cropped_screenshot_c23b38e7e3ca4061862dd8be1ae0d0b0_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="8">
+<li>
+<p>Review the <strong>Change Summary</strong>. Bob restates the change specification and explains why it cannot be made in isolation. It then captures the system context: the technologies involved, the entry point (<code>BNKMENU.cbl</code> under transaction <code>OMEN</code>) and the known dependencies.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/d9d03283-9e69-4f14-882a-9e4ddae8246e/user_cropped_screenshot_4572768adb59481a9b8458aeb681b90b_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/d9d03283-9e69-4f14-882a-9e4ddae8246e/user_cropped_screenshot_4572768adb59481a9b8458aeb681b90b_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="9">
+<li>
+<p>Scroll to the <strong>Scope Definition</strong>. Bob separates what is in scope from what is out of scope, and explains why. </p>
+<p>Notice that <code>BNK1DDM.cpy</code> also contains a field named <code>COMPANYI</code>, yet Bob correctly excludes it because it belongs to a different mapset. This is the kind of false positive that a plain text search would get wrong.</p>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/2654a38f-20e8-4817-9bf3-118eb7d8e796/user_cropped_screenshot_72c33c25129245deb6904c30335c0873_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/2654a38f-20e8-4817-9bf3-118eb7d8e796/user_cropped_screenshot_72c33c25129245deb6904c30335c0873_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<ol start="10">
+<li>
+<p>Continue to the <strong>System Overview</strong>. The <strong>Components Analyzed</strong> table lists every affected artifact with its type, the change required and an impact level. It gives teams a ready-made checklist for planning the change.</p>
+<details class="warning">
+<summary>DIAGRAM NOT RENDERING?</summary>
+<p>If the <strong>System Context Diagram</strong> shows a parse error instead of a diagram, Bob generated Mermaid syntax that the previewer could not read (often caused by special characters such as parentheses in node labels). Ask Bob to fix it with a follow-up prompt such as <code>Fix the Mermaid syntax error in the System Context Diagram of IMPACT-ANALYSIS.md</code>.</p>
+</details>
+<p></p><p align="left">
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/0aebada0-a4e5-43f5-b794-0515eb6754d3/user_cropped_screenshot_5a8e8b15b1fa495ba452c63b5c271f81_text_export.jpeg" data-desc-position="bottom"><img src="https://colony-recorder.s3.us-west-1.amazonaws.com/files/2026-09-21/0aebada0-a4e5-43f5-b794-0515eb6754d3/user_cropped_screenshot_5a8e8b15b1fa495ba452c63b5c271f81_text_export.jpeg" alt="" width="600"></a>
+</p>
+</li>
+</ol>
+<hr>
+<h2 id="vi-key-takeaways"><strong>vi. Key takeaways</strong></h2>
+<hr>
+<ul>
+<li>Bob Workflows turn complex analysis tasks into guided, repeatable steps</li>
+<li>Explanations can be tailored to Architect, Developer or Business audiences</li>
+<li>Z Architect mode can document an entire application's programs, data stores and dependencies in minutes</li>
+<li>Impact analysis traces the full blast radius of a change across copybooks, BMS maps, programs and runtime resources</li>
+<li>Bob distinguishes true dependencies from look-alike fields, reducing false positives</li>
+<li>Understanding change impact before touching code reduces risk and prevents production incidents</li>
+</ul>
+<p></p>
+<p>The next module shifts from analysis to change. Building on what you learned here, you will have Bob plan a new feature for CBSA and then write the COBOL that delivers it. Continue to <strong><a href="../../build/2-1/" target="_blank">Module 2 | Implementing a new feature in COBOL</a></strong>.</p>
+<hr></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../../setup-partners/" class="md-footer__link md-footer__link--prev" aria-label="Previous: For IBM business partners">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                For IBM business partners
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../build/2-1/" class="md-footer__link md-footer__link--next" aria-label="Next: Implementing a new feature in COBOL">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Implementing a new feature in COBOL
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 IBM
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "content.code.annotate", "content.code.copy", "content.code.select", "navigation.footer"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../js/print-site.js"></script>
+      
+        <script src="../../_static/hide-toc-nav.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
